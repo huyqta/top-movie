@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Movie.Services.Models;
+using System;
+using System.Linq;
 
 namespace Movie.Services
 {
@@ -7,6 +9,8 @@ namespace Movie.Services
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            //webphimContext context = new webphimContext();
+            //Console.WriteLine(context.TbMovie.FirstOrDefault().MovieName);
         }
     }
 }

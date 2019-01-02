@@ -1,7 +1,12 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopMovie", "TopMovie\TopMovie.csproj", "{E2319510-4A65-43AD-9C79-F5CF779E7452}"
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.Services", "Movie.Services\Movie.Services.csproj", "{CD5C5967-CA34-4EF5-A23F-0370CE48C8BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopPhimReact", "TopPhimReact\TopPhimReact.csproj", "{606B5BD2-7F5A-4A6A-A523-BFB1870B3FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopMovie", "TopMovie\TopMovie.csproj", "{74B4E338-B244-4550-81D2-02EBDB30D715}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +14,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2319510-4A65-43AD-9C79-F5CF779E7452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2319510-4A65-43AD-9C79-F5CF779E7452}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2319510-4A65-43AD-9C79-F5CF779E7452}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2319510-4A65-43AD-9C79-F5CF779E7452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD5C5967-CA34-4EF5-A23F-0370CE48C8BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD5C5967-CA34-4EF5-A23F-0370CE48C8BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD5C5967-CA34-4EF5-A23F-0370CE48C8BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD5C5967-CA34-4EF5-A23F-0370CE48C8BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{606B5BD2-7F5A-4A6A-A523-BFB1870B3FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606B5BD2-7F5A-4A6A-A523-BFB1870B3FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606B5BD2-7F5A-4A6A-A523-BFB1870B3FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{606B5BD2-7F5A-4A6A-A523-BFB1870B3FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B4E338-B244-4550-81D2-02EBDB30D715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B4E338-B244-4550-81D2-02EBDB30D715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B4E338-B244-4550-81D2-02EBDB30D715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B4E338-B244-4550-81D2-02EBDB30D715}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC40206B-BA6B-4D3C-9C35-D1E9DC94DA96}
 	EndGlobalSection
 EndGlobal
