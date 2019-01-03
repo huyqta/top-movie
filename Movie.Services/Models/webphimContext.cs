@@ -15,6 +15,7 @@ namespace Movie.Services.Models
         {
         }
 
+        public virtual DbSet<TbAccount> TbAccount { get; set; }
         public virtual DbSet<TbCategoryMovie> TbCategoryMovie { get; set; }
         public virtual DbSet<TbMovie> TbMovie { get; set; }
 
@@ -23,13 +24,38 @@ namespace Movie.Services.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySQL("server=128.199.183.242;port=3306;user=huyqta;password=huyqta;database=webphim");
+                optionsBuilder.UseMySQL("Server=128.199.183.242;User Id=huyqta;Password=huyqta;Database=webphim");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
+
+            modelBuilder.Entity<TbAccount>(entity =>
+            {
+                entity.ToTable("tb_account", "webphim");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.AccountType)
+                    .HasColumnName("account_type")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasColumnName("password")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasColumnName("username")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<TbCategoryMovie>(entity =>
             {

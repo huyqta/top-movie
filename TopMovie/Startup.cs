@@ -22,6 +22,10 @@ namespace TopMovie
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromSeconds(5);
+                options.Cookie.HttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +40,7 @@ namespace TopMovie
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseSession();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

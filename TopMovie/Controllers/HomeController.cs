@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TopMovie.Helpers;
 using TopMovie.Models;
 
 namespace TopMovie.Controllers
 {
+    [AuthorizationAttribute]
     public class HomeController : Controller
     {
         public IActionResult Index()
