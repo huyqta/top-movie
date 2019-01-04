@@ -9,7 +9,7 @@
 
     <environment include="Development">
         @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />*@
+            <link rel="stylesheet" href="~/css/site.css" />*@
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="~/dist/bootstrap/dist/css/bootstrap.min.css">
         <!-- Font Awesome -->
@@ -44,19 +44,31 @@
         <!-- iCheck -->
         <link rel="stylesheet" href="~/dist/plugins/iCheck/square/blue.css">
     </environment>
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3 -->
+    <script src="~/dist/jquery/dist/jquery.min.js" defer></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/dist/bootstrap/dist/js/bootstrap.min.js" defer></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/lte/js/adminlte.min.js" defer></script>
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </head>
-<body>
-    @{
-        var username = HttpContextAccessor.HttpContext.Session.GetString("username");
-    }
-    @if (username == null)
-    {
-        @RenderBody()
-    }
-    else
-    {
 
-        <div class="hold-transition skin-blue sidebar-mini">
+
+@{
+    var username = HttpContextAccessor.HttpContext.Session.GetString("username");
+}
+@if (username == null)
+{
+    <body>
+        @RenderBody()
+    </body>
+}
+else
+{
+    <body class="hold-transition skin-blue sidebar-mini">
             <div class="wrapper">
                 <!-- Main Header -->
                 <header class="main-header">
@@ -70,9 +82,9 @@
                     <!-- Header Navbar -->
                     <nav class="navbar navbar-static-top" role="navigation">
                         <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                            <span class="sr-only">Toggle navigation</span>
-                        </a>
+                        @*<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                                <span class="sr-only">Toggle navigation</span>
+                            </a>*@
                         <!-- Navbar Right Menu -->
                         <div class="navbar-custom-menu">
                             <ul class="nav navbar-nav">
@@ -93,7 +105,7 @@
                                                     <a href="#">
                                                         <div class="pull-left">
                                                             <!-- User Image -->
-                                                            <img src="~/dist/lte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                            <img src="~/dist/lte/img/avatar.png" class="img-circle" alt="User Image">
                                                         </div>
                                                         <!-- Message title and timestamp -->
                                                         <h4>
@@ -179,14 +191,14 @@
                                     <!-- Menu Toggle Button -->
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <!-- The user image in the navbar-->
-                                        <img src="~/dist/lte/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                        <img src="~/dist/lte/img/avatar.png" class="user-image" alt="User Image">
                                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                         <span class="hidden-xs">@username</span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <!-- The user image in the menu -->
                                         <li class="user-header">
-                                            <img src="~/dist/lte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                            <img src="~/dist/lte/img/avatar.png" class="img-circle" alt="User Image">
                                             <p>
                                                 @username - Web Developer
                                                 <small>Member since Nov. 2012</small>
@@ -233,7 +245,7 @@
                         <!-- Sidebar user panel (optional) -->
                         <div class="user-panel">
                             <div class="pull-left image">
-                                <img src="~/dist/lte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="~/dist/lte/img/avatar.png" class="img-circle" alt="User Image">
                             </div>
                             <div class="pull-left info">
                                 <p>@username</p>
@@ -254,24 +266,7 @@
                         </form>
                         <!-- /.search form -->
                         <!-- Sidebar Menu -->
-                        <ul class="sidebar-menu" data-widget="tree">
-                            <li class="header">LIST</li>
-                            <!-- Optionally, you can add icons to the links -->
-                            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Category Movie</span></a></li>
-                            <li><a href="#"><i class="fa fa-link"></i> <span>Movie</span></a></li>
-                            @*<li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-link"></i> <span>Multilevel</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="#">Link in level 2</a></li>
-                                    <li><a href="#">Link in level 2</a></li>
-                                </ul>
-                            </li>*@
-                        </ul>
+                        @Html.Partial("_SidebarMenu.cshtml");
                         <!-- /.sidebar-menu -->
                     </section>
                     <!-- /.sidebar -->
@@ -294,7 +289,7 @@
                         <!--------------------------
                         | Your Page Content Here |
                         -------------------------->
-                        @RenderBody();
+                        @RenderBody()
                     </section>
                     <!-- /.content -->
                 </div>
@@ -379,68 +374,57 @@
                 <div class="control-sidebar-bg"></div>
             </div>
             <!-- ./wrapper -->
-            <!-- REQUIRED JS SCRIPTS -->
-            <!-- jQuery 3 -->
-            <script src="~/dist/jquery/dist/jquery.min.js"></script>
-            <!-- Bootstrap 3.3.7 -->
-            <script src="~/dist/bootstrap/dist/js/bootstrap.min.js"></script>
-            <!-- AdminLTE App -->
-            <script src="~/dist/lte/js/adminlte.min.js"></script>
-            <!-- Optionally, you can add Slimscroll and FastClick plugins.
-             Both of these plugins are recommended to enhance the
-             user experience. -->
-        </div>
+        <environment include="Development">
+            <script src="~/dist/jquery/dist/jquery.js"></script>
+            <script src="~/dist/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                    asp-fallback-src="~/dist/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/dist/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
 
-    }
-    @*<nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">TopMovie</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    </ul>
-                </div>
+        @RenderSection("Scripts", required: false)
+    </body>
+}
+@*<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">TopMovie</a>
             </div>
-        </nav>
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; 2019 - TopMovie</p>
-            </footer>
-        </div>*@
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2019 - TopMovie</p>
+        </footer>
+    </div>*@
 
-    <environment include="Development">
-        <script src="~/dist/jquery/dist/jquery.js"></script>
-        <script src="~/dist/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/dist/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/dist/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
 
-    @RenderSection("Scripts", required: false)
-</body>
 </html>

@@ -1,0 +1,92 @@
+﻿@model CategoriesMoviesModel;
+@{
+    ViewData["Title"] = "Category COntroller";
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="button" value="ADD" title="ADD" class="btn btn-block btn-success" />
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of the Movies</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Category movie</th>
+                                <th>Movie name</th>
+                                <th>Country</th>
+                                <th>IMDB</th>
+                                <th>Movie type</th>
+                                <th>Release date</th>
+                                <th>Trailer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var movie in Model.movies)
+                            {
+                            <tr>
+                                <td>@movie.Category.CategoryName</td>
+                                <td>@movie.MovieName</td>
+                                <td>@movie.Country</td>
+                                <td>@movie.ImdbId</td>
+                                <td>@movie.MovieType</td>
+                                <td>@movie.ReleaseDate</td>
+                                <td>@movie.Trailer</td>
+                            </tr>
+                            }
+                        </tbody>
+                        @*<tfoot>
+                            <tr>
+                                <th>Rendering engine</th>
+                                <th>Browser</th>
+                                <th>Platform(s)</th>
+                                <th>Engine version</th>
+                                <th>CSS grade</th>
+                            </tr>
+                        </tfoot>*@
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<!-- /.content -->
+<!-- jQuery 3 -->
+<script src="~/dist/jquery/dist/jquery.min.js" defer></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="~/dist/bootstrap/dist/js/bootstrap.min.js" defer></script>
+<!-- DataTables -->
+<script src="~/dist/datatables.net/js/jquery.dataTables.min.js" defer></script>
+<script src="~/dist/datatables.net-bs/js/dataTables.bootstrap.min.js" defer></script>
+<!-- SlimScroll -->
+<script src="~/dist/jquery-slimscroll/jquery.slimscroll.min.js" defer></script>
+<!-- FastClick -->
+<script src="~/dist/fastclick/lib/fastclick.js" defer></script>
+<!-- AdminLTE App -->
+<script src="~/dist/lte/js/adminlte.min.js" defer></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/dist/lte/js/demo.js" defer></script>
+<!-- page script -->
+<script>
+    $(function () {
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+
+        $('ul').tree();
+    })</script>

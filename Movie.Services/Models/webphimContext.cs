@@ -66,7 +66,6 @@ namespace Movie.Services.Models
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.CategoryName)
-                    .IsRequired()
                     .HasColumnName("category_name")
                     .HasMaxLength(500)
                     .IsUnicode(false);
@@ -80,6 +79,9 @@ namespace Movie.Services.Models
             {
                 entity.ToTable("tb_movie", "webphim");
 
+                entity.HasIndex(e => e.CategoryId)
+                    .HasName("category_id_2");
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
@@ -87,6 +89,11 @@ namespace Movie.Services.Models
                 entity.Property(e => e.CategoryId)
                     .HasColumnName("category_id")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.Country)
+                    .HasColumnName("country")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ImdbId)
                     .HasColumnName("imdb_id")
@@ -98,6 +105,23 @@ namespace Movie.Services.Models
                     .HasColumnName("movie_name")
                     .HasMaxLength(500)
                     .IsUnicode(false);
+
+                entity.Property(e => e.MovieType)
+                    .HasColumnName("movie_type")
+                    .HasColumnType("tinyint(4)")
+                    .HasDefaultValueSql("1");
+
+                entity.Property(e => e.ReleaseDate).HasColumnName("release_date");
+
+                entity.Property(e => e.Trailer)
+                    .HasColumnName("trailer")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.TbMovie)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("tb_movie_ibfk_1");
             });
         }
     }
