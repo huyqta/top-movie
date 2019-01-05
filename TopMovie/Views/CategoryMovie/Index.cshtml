@@ -7,14 +7,17 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <input type="button" value="ADD" title="ADD" class="btn btn-block btn-success" />
+            <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#modal-upload-movie">
+                ADD CATEGORY
+            </button>
+            @*<input type="button" value="ADD" title="ADD" class="btn btn-block btn-success" />*@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">List of the Movies</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="example2" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Category movie</th>
@@ -29,26 +32,26 @@
                         <tbody>
                             @foreach (var movie in Model.movies)
                             {
-                            <tr>
-                                <td>@movie.Category.CategoryName</td>
-                                <td>@movie.MovieName</td>
-                                <td>@movie.Country</td>
-                                <td>@movie.ImdbId</td>
-                                <td>@movie.MovieType</td>
-                                <td>@movie.ReleaseDate</td>
-                                <td>@movie.Trailer</td>
-                            </tr>
+                                <tr>
+                                    <td>@movie.Category.CategoryName</td>
+                                    <td>@movie.MovieName</td>
+                                    <td>@movie.Country</td>
+                                    <td>@movie.ImdbId</td>
+                                    <td>@movie.MovieType</td>
+                                    <td>@movie.ReleaseDate</td>
+                                    <td>@movie.Trailer</td>
+                                </tr>
                             }
                         </tbody>
                         @*<tfoot>
-                            <tr>
-                                <th>Rendering engine</th>
-                                <th>Browser</th>
-                                <th>Platform(s)</th>
-                                <th>Engine version</th>
-                                <th>CSS grade</th>
-                            </tr>
-                        </tfoot>*@
+                                <tr>
+                                    <th>Rendering engine</th>
+                                    <th>Browser</th>
+                                    <th>Platform(s)</th>
+                                    <th>Engine version</th>
+                                    <th>CSS grade</th>
+                                </tr>
+                            </tfoot>*@
                     </table>
                 </div>
                 <!-- /.box-body -->
@@ -58,27 +61,20 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
+    @*<div id="modal-upload-movie">
+            @Html.Partial("ModalUploadMovie.cshtml");
+        </div>*@
 </section>
 <!-- /.content -->
 <!-- /.content -->
-<!-- jQuery 3 -->
-<script src="~/dist/jquery/dist/jquery.min.js" defer></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="~/dist/bootstrap/dist/js/bootstrap.min.js" defer></script>
 <!-- DataTables -->
-<script src="~/dist/datatables.net/js/jquery.dataTables.min.js" defer></script>
-<script src="~/dist/datatables.net-bs/js/dataTables.bootstrap.min.js" defer></script>
-<!-- SlimScroll -->
-<script src="~/dist/jquery-slimscroll/jquery.slimscroll.min.js" defer></script>
-<!-- FastClick -->
-<script src="~/dist/fastclick/lib/fastclick.js" defer></script>
-<!-- AdminLTE App -->
-<script src="~/dist/lte/js/adminlte.min.js" defer></script>
-<!-- AdminLTE for demo purposes -->
-<script src="~/dist/lte/js/demo.js" defer></script>
+<script src="~/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
 <!-- page script -->
 <script>
     $(function () {
+        //$('#example1').DataTable()
         $('#example2').DataTable({
             'paging': true,
             'lengthChange': false,
@@ -87,6 +83,5 @@
             'info': true,
             'autoWidth': false
         })
-
-        $('ul').tree();
-    })</script>
+    })
+</script>

@@ -13,6 +13,7 @@ namespace Movie.Services.Models
         public DateTime? ReleaseDate { get; set; }
         public byte? MovieType { get; set; }
         public string Trailer { get; set; }
+        public string GoogleDrive { get; set; }
 
         public virtual TbCategoryMovie Category { get; set; }
     }

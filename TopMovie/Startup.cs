@@ -34,6 +34,7 @@ namespace TopMovie
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -43,9 +44,9 @@ namespace TopMovie
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseSession();
             app.UseStaticFiles();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

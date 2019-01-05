@@ -95,6 +95,11 @@ namespace Movie.Services.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
+                entity.Property(e => e.GoogleDrive)
+                    .HasColumnName("google_drive")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ImdbId)
                     .HasColumnName("imdb_id")
                     .HasMaxLength(500)
