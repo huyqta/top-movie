@@ -43,7 +43,15 @@ namespace TopMovie.Controllers
             CategoriesMoviesModel model = new CategoriesMoviesModel();
             model.categories = context.TbCategoryMovie.ToList();
             model.movies = context.TbMovie.ToList();
-            return View(model);
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult CreateCategoryMovie([FromBody] TbCategoryMovie categoryData)
+        {
+            context.TbCategoryMovie.Add(categoryData);
+            context.SaveChanges();
+            return View("Index", "CategoryMovie");
         }
     }
 }

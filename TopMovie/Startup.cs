@@ -26,7 +26,7 @@ namespace TopMovie
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMvc();
             services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromSeconds(5);
+                options.IdleTimeout = TimeSpan.FromSeconds(600);
                 options.Cookie.HttpOnly = true;
             });
         }

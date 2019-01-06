@@ -1,14 +1,14 @@
 ﻿@model CategoriesMoviesModel;
 @{
-    ViewData["Title"] = "Category COntroller";
+    Layout = "_Layout";
 }
 
 <!-- Main content -->
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <button type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#modal-upload-movie">
-                ADD CATEGORY
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                Add new category
             </button>
             @*<input type="button" value="ADD" title="ADD" class="btn btn-block btn-success" />*@
             <div class="box">
@@ -20,26 +20,20 @@
                     <table id="example2" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Category movie</th>
-                                <th>Movie name</th>
-                                <th>Country</th>
-                                <th>IMDB</th>
-                                <th>Movie type</th>
-                                <th>Release date</th>
-                                <th>Trailer</th>
+                                <th>Category</th>
+                                <th>Parent category</th>
+                                <th>Edit category</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var movie in Model.movies)
+                            @foreach (var cat in Model.categories)
                             {
                                 <tr>
-                                    <td>@movie.Category.CategoryName</td>
-                                    <td>@movie.MovieName</td>
-                                    <td>@movie.Country</td>
-                                    <td>@movie.ImdbId</td>
-                                    <td>@movie.MovieType</td>
-                                    <td>@movie.ReleaseDate</td>
-                                    <td>@movie.Trailer</td>
+                                    <td>@cat.CategoryName</td>
+                                    <td>@cat.ParentId</td>
+                                    <td>
+                                        DEL | UPDATE
+                                    </td>
                                 </tr>
                             }
                         </tbody>
@@ -61,9 +55,9 @@
         <!-- /.col -->
     </div>
     <!-- /.row -->
-    @*<div id="modal-upload-movie">
-            @Html.Partial("ModalUploadMovie.cshtml");
-        </div>*@
+    @Html.Partial("ModalUploadMovie.cshtml")
+    <!-- Modal -->
+
 </section>
 <!-- /.content -->
 <!-- /.content -->
@@ -73,15 +67,15 @@
 
 <!-- page script -->
 <script>
-    $(function () {
-        //$('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false
+        $(function () {
+            //$('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
         })
-    })
-</script>
+    </script>

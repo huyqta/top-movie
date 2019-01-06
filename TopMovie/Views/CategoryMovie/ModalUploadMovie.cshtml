@@ -1,84 +1,47 @@
 ﻿
-@{
-    ViewData["Title"] = "Upload movie";
-}
-<div class="box box-default">
-    <div class="box-header with-border">
-        <h3 class="box-title">Select2</h3>
-
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-        </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Minimal</label>
-                    <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                </div>
-                <!-- /.form-group -->
-                <div class="form-group">
-                    <label>Disabled</label>
-                    <select class="form-control select2" disabled="disabled" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                </div>
-                <!-- /.form-group -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
-            <!-- /.col -->
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Multiple</label>
-                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State"
-                            style="width: 100%;">
-                        <option>Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="category-movie">Category movie</label>
+                            <input type="text" class="form-control" name="category_name" id="category-movie" placeholder="Input category movie" />
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
                 </div>
-                <!-- /.form-group -->
-                <div class="form-group">
-                    <label>Disabled Result</label>
-                    <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option disabled="disabled">California (disabled)</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                </div>
-                <!-- /.form-group -->
+                <!-- /.row -->
             </div>
-            <!-- /.col -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addCategory()">Save changes</button>
+            </div>
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-        Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-        the plugin.
     </div>
 </div>
+<script>
+    function addCategory(){
+    var category = new Object();
+    category.CategoryName = $("#category-movie").val();
+    category.ParentId = -1;
+    var cat_name = $("#category-movie").val();
+    $.ajax(
+            {
+                type: "POST",
+                url: '@Url.Action("CreateCategoryMovie", "CategoryMovie")',
+                data: JSON.stringify(category),
+                contentType: "application/json; charset=utf-8",  
+                dataType: "json"
+            });
+            $("#myModal").modal('hide');
+            location.reload();
+    return false;
+        }
+</script>
