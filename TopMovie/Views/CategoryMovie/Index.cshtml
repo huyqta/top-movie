@@ -20,23 +20,31 @@
                     <table id="example2" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Category</th>
-                                <th>Parent category</th>
-                                <th>Edit category</th>
+                                <th>Id</th>
+                                <th>CategoryName</th>
+                                @*<th>ParentId</th>*@
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach (var cat in Model.categories)
-                            {
-                                <tr>
-                                    <td>@cat.CategoryName</td>
-                                    <td>@cat.ParentId</td>
-                                    <td>
-                                        DEL | UPDATE
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
+                        @*<tbody>
+                                @foreach (var cat in Model.categories)
+                                {
+                                    <tr>
+                                        <td>@cat.CategoryName</td>
+                                        <td>@cat.ParentId</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger btn-lg" onclick="deleteCategory()">
+                                                DELETE <i class="glyphicon glyphicon-trash" />
+                                            </button> |
+                                            <button type="button" class="btn btn-primary btn-lg" onclick="deleteCategory()">
+                                                UPDATE <i class="glyphicon glyphicon-edit" />
+                                            </button>
+                                            <input type="hidden" value="@cat.Id" />
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>*@
                         @*<tfoot>
                                 <tr>
                                     <th>Rendering engine</th>
@@ -67,15 +75,82 @@
 
 <!-- page script -->
 <script>
-        $(function () {
-            //$('#example1').DataTable()
-            $('#example2').DataTable({
-                'paging': true,
-                'lengthChange': false,
-                'searching': false,
-                'ordering': true,
-                'info': true,
-                'autoWidth': false
-            })
+    $(function () {
+        $('#example2').DataTable({
+            'processing': true, // for show progress bar
+            'serverSide': true, // for process server side
+            'filter': true, // this is for disable filter (search box)
+            'orderMulti': false, // for disable multiple column at once
+            'paging': true,
+            //'lengthChange': false,
+            //'searching': false,
+            //'ordering': true,
+            //'info': true,
+            //'autoWidth': false,
+            //'data': obj,
+            "ajax": {
+                "url": "@Url.Action("GetAll", "CategoryMovie")",
+                "type": "POST",
+                "dataSrc": function (json) {
+                    for (var i = 0, ien = json.length; i < ien; i++) {
+                        json[i][0] = '<a href="/message/' + json[i][0] + '>View message</a>';
+                    }
+                    return json;
+                },
+            },
+            "columns": [
+                { "data": "id", "name": "id" },
+                { "data": "categoryName", "name": "categoryName" },
+                //{ "data": "parentId", "name": "parentId" },
+                {
+                    data: null, render: function (data, type, row) {
+                        return "<a href='#' class='btn btn-info' onclick=DeleteCategory(" + row.id + "); >Delete</a>";
+                    }
+                },
+                {
+                    data: null, render: function (data, type, row) {
+                        return "<a href='#' class='btn btn-danger' onclick=ShowCategory(" + row.id + "); >Edit</a>";
+                    }
+                },
+            ],
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }
+            ]
         })
-    </script>
+    })
+
+    function ShowCategory(id) {
+        $.ajax({
+            url: "CategoryMovie/GetById/" + id,
+            type: "GET",
+            //data: id,
+            success: function (result) {
+                $('#category_name').val(result.categoryName);
+                $('#category_id').val(result.id);
+                $('#myModal').modal('show');
+                //$('#btnUpdate').show();
+                //$('#btnAdd').hide();
+            },
+        })
+    }
+
+    function DeleteCategory(id) {
+        $.ajax({
+            url: "CategoryMovie/Delete/" + id,
+            type: "GET",
+            //data: id,
+            success: function (result) {
+                //$('#category_name').val(result.categoryName);
+                //$('#category_id').val(result.id);
+                //$('#myModal').modal('show');
+                //$('#btnUpdate').show();
+                //$('#btnAdd').hide();
+                $('#example2').DataTable().draw();
+            },
+        })
+    }
+</script>
