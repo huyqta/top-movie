@@ -1,84 +1,125 @@
-﻿
-@{
-    ViewData["Title"] = "Upload movie";
-}
-<div class="box box-default">
-    <div class="box-header with-border">
-        <h3 class="box-title">Select2</h3>
+﻿@model CategoriesMoviesModel;
 
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-        </div>
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Minimal</label>
-                    <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                </div>
-                <!-- /.form-group -->
-                <div class="form-group">
-                    <label>Disabled</label>
-                    <select class="form-control select2" disabled="disabled" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                </div>
-                <!-- /.form-group -->
+<div class="modal fade" id="modal-upload-movie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
-            <!-- /.col -->
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Multiple</label>
-                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State"
-                            style="width: 100%;">
-                        <option>Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="hidden" name="movie_id" id="movie_id" />
+                            <label for="category-movie">Movie name</label>
+                            <input type="text" class="form-control" name="movie_name" id="movie_name" placeholder="Input movie name" />
+                            <label for="category_tag">Categories</label>
+                            <select class="col-xs-6 select-category js-states form-control" style="width: 100%" name="category_tag" multiple="multiple"></select>
+                            <label for="actor_tag">Actors</label>
+                            <select class="col-xs-6 select-actor js-states form-control" style="width: 100%" name="actor_tag" multiple="multiple"></select>
+                            <label for="category-movie">Imdb Id</label>
+                            <input type="text" class="form-control" name="imdb_id" id="imdb_id" placeholder="Input imdb" />
+                            <label for="country_tag">Country</label>
+                            <select class="col-xs-6 select-country js-states form-control" style="width: 100%" name="country_tag">
+                                <option label="Mỹ" data-select2-id="Mỹ"></option>
+                                <option label="Nhật Bản" data-select2-id="Nhật Bản"></option>
+                                
+                            </select>
+                            @*<input type="text" class="form-control" name="Country" id="country" placeholder="Input country" />*@
+                            <label for="category-movie">Release date</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                    <input type="text" class="form-control" name="release_date" id="release_date" placeholder="Input release date" />
+                                </div>
+                            </div>
+                            <label for="category-movie">Link trailer</label>
+                            <input type="text" class="form-control" name="trailer" id="trailer" placeholder="Input link trailer" />
+                            <label for="category-movie">Link google drive</label>
+                            <input type="text" class="form-control" name="google_drive" id="google_drive" placeholder="Input link google drive" />
+                            <label for="category-movie">Image Url</label>
+                            <input type="text" class="form-control" name="image_url" id="image_url" placeholder="Input image url" />
+                            <label for="category-movie">Movie Type</label>
+                            <input type="text" class="form-control" name="movie_type" id="movie_type" placeholder="Select movie type" />
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
                 </div>
-                <!-- /.form-group -->
-                <div class="form-group">
-                    <label>Disabled Result</label>
-                    <select class="form-control select2" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                        <option>Alaska</option>
-                        <option disabled="disabled">California (disabled)</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                </div>
-                <!-- /.form-group -->
+                <!-- /.row -->
             </div>
-            <!-- /.col -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveMovie()">Save changes</button>
+            </div>
         </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.box-body -->
-    <div class="box-footer">
-        Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-        the plugin.
     </div>
 </div>
+<script src="~/bower_components/select2/dist/js/select2.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="~/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".select-category").select2({
+            dropdownParent: $('#modal-upload-movie'),
+            placeholder: 'Select an option',
+            selectOnClose: true,
+            tags: true,
+            width: 'resolve',
+        });
+        $(".select-actor").select2({
+            dropdownParent: $('#modal-upload-movie'),
+            placeholder: 'Select an option',
+            selectOnClose: true,
+            tags: true,
+            width: 'resolve',
+        });
+        $(".select-country").select2();
+
+        $('#release_date').datepicker({
+            autoclose: true
+        })
+
+    });
+
+    function saveMovie(){
+        var movie = new Object();
+        movie.MovieName = $("#movie_name").val();
+        movie.ImdbId = $("#imdb_id").val();
+        movie.Country = $(".select-country").val();
+        movie.ReleaseDate = $("#release_date").val();
+        movie.MovieType = $("#movie_type").val();
+        movie.Trailer = $("#trailer").val();
+        movie.GoogleDrive = $("#google_drive").val();
+        movie.ImageUrl = $("#image_url").val();
+        movie.CategoryTag = $(".select-category").val();
+        movie.ActorTag = $(".select-actor").val();
+        movie.CategoryId = -1;
+        console.log(JSON.stringify(movie));
+
+        var url = '@Url.Action("Create", "Movie")';
+        if ($("#movie_id").val() !== null && $("#movie_id").val() !== '') {
+                url = '@Url.Action("Update", "Movie")';
+                movie.Id = $("#movie_id").val();
+            }
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: JSON.stringify(movie),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                $('#example2').DataTable().draw();
+            },
+         });
+        $("#myModal").modal('hide');
+
+        return false;
+    }
+
+    $(".modal").on("hidden.bs.modal", function () {
+        $(".modal-body input ").val("");
+    });
+</script>

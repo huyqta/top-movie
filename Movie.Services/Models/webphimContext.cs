@@ -86,9 +86,19 @@ namespace Movie.Services.Models
                     .HasColumnName("id")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.ActorTag)
+                    .HasColumnName("actor_tag")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.CategoryId)
                     .HasColumnName("category_id")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.CategoryTag)
+                    .HasColumnName("category_tag")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Country)
                     .HasColumnName("country")
@@ -97,6 +107,11 @@ namespace Movie.Services.Models
 
                 entity.Property(e => e.GoogleDrive)
                     .HasColumnName("google_drive")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ImageUrl)
+                    .HasColumnName("image_url")
                     .HasMaxLength(500)
                     .IsUnicode(false);
 

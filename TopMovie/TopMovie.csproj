@@ -14,7 +14,6 @@
     <EmbeddedResource Remove="wwwroot\bower_components\fullcalendar\**" />
     <None Remove="wwwroot\bower_components\admin-lte\**" />
     <None Remove="wwwroot\bower_components\fullcalendar\**" />
-    <Content Remove="Views\Movie\ModalUploadMovie.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -2001,7 +2000,6 @@
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\dependencyLibs\" />
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\global\" />
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\phone-codes\" />
-    <Folder Include="Views\Movie\" />
   </ItemGroup>
 
   <ItemGroup>

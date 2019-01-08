@@ -9,7 +9,7 @@ using TopMovie.Models;
 
 namespace TopMovie.Controllers
 {
-    public class CategoryMovieController : Controller
+    public class MovieController : Controller
     {
         webphimContext context = new webphimContext();
 
@@ -22,33 +22,33 @@ namespace TopMovie.Controllers
         }
 
         [HttpPost]
-        public List<TbCategoryMovie> GetAll()
+        public List<TbMovie> GetAll()
         {
             CategoriesMoviesModel model = new CategoriesMoviesModel();
             model.categories = context.TbCategoryMovie.ToList();
             model.movies = context.TbMovie.ToList();
-            return model.categories.ToList();
+            return model.movies.ToList();
         }
 
         [HttpGet]
-        public TbCategoryMovie GetById(int id)
+        public TbMovie GetById(int id)
         {
-            return context.TbCategoryMovie.FirstOrDefault(c=>c.Id == id);
+            return context.TbMovie.FirstOrDefault(c => c.Id == id);
         }
 
         [HttpPost]
-        public int Create([FromBody] TbCategoryMovie categoryData)
+        public int Create([FromBody] TbMovie movieData)
         {
-            context.TbCategoryMovie.Add(categoryData);
+            context.TbMovie.Add(movieData);
             var result = context.SaveChanges();
             return result;
         }
 
         [HttpPost]
-        public int Update([FromBody] TbCategoryMovie categoryData)
+        public int Update([FromBody] TbMovie movie)
         {
-            var oldCategory = context.TbCategoryMovie.FirstOrDefault(c=>c.Id == categoryData.Id);
-            context.Entry<TbCategoryMovie>(oldCategory).CurrentValues.SetValues(categoryData);
+            var oldMovie = context.TbMovie.FirstOrDefault(c => c.Id == movie.Id);
+            context.Entry<TbMovie>(oldMovie).CurrentValues.SetValues(movie);
             var result = context.SaveChanges();
             return result;
         }
@@ -56,8 +56,8 @@ namespace TopMovie.Controllers
         [HttpGet]
         public int Delete(int id)
         {
-            var category = context.TbCategoryMovie.FirstOrDefault(c => c.Id == id);
-            context.TbCategoryMovie.Remove(category);
+            var movie = context.TbMovie.FirstOrDefault(c => c.Id == id);
+            context.TbMovie.Remove(movie);
             var result = context.SaveChanges();
             return result;
         }

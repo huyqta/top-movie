@@ -14,6 +14,9 @@ namespace Movie.Services.Models
         public byte? MovieType { get; set; }
         public string Trailer { get; set; }
         public string GoogleDrive { get; set; }
+        public string ImageUrl { get; set; }
+        public string CategoryTag { get; set; }
+        public string ActorTag { get; set; }
 
         public virtual TbCategoryMovie Category { get; set; }
     }

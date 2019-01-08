@@ -1,0 +1,61 @@
+﻿@model CategoriesMoviesModel;
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="category-movie">Category movie</label>
+                            <input type="hidden" name="category_id" id="category_id" />
+                            <input type="text" class="form-control" name="category_name" id="category_name" placeholder="Input category movie" />
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveCategory()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function saveCategory(){
+    var category = new Object();
+    category.CategoryName = $("#category_name").val();
+    category.ParentId = -1;
+        var cat_name = $("category_name").val();
+        var url = '@Url.Action("Create", "CategoryMovie")';
+        if ($("#category_id").val() !== null && $("#category_id").val() !== '') {
+            url = '@Url.Action("Update", "CategoryMovie")';
+            category.Id = $("#category_id").val();
+        }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: JSON.stringify(category),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+        success: function (data) {
+            $('#example2').DataTable().draw();
+        },
+     });
+    $("#myModal").modal('hide');
+
+    return false;
+    }
+
+    $(".modal").on("hidden.bs.modal", function () {
+        $(".modal-body input ").val("");
+    });
+</script>
