@@ -17,6 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\BaseController.cs" />
+    <Compile Remove="Controllers\Movie1Controller.cs" />
+    <Compile Remove="Controllers\Movie33Controller.cs" />
+    <Compile Remove="Controllers\MoviesController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\bower_components\bootstrap-colorpicker\.bower.json" />
     <Content Include="wwwroot\bower_components\bootstrap-colorpicker\composer.json" />
     <Content Include="wwwroot\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />

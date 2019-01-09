@@ -9,6 +9,7 @@ using TopMovie.Models;
 
 namespace TopMovie.Controllers
 {
+    [AuthorizationAttribute]
     public class CategoryMovieController : Controller
     {
         webphimContext context = new webphimContext();

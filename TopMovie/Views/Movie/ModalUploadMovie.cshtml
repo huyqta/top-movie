@@ -1,6 +1,6 @@
 ﻿@model CategoriesMoviesModel;
 
-<div class="modal fade" id="modal-upload-movie" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -11,8 +11,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="hidden" name="movie_id" id="movie_id" />
                             <label for="category-movie">Movie name</label>
+                            <input type="hidden" name="movie_id" id="movie_id" />
                             <input type="text" class="form-control" name="movie_name" id="movie_name" placeholder="Input movie name" />
                             <label for="category_tag">Categories</label>
                             <select class="col-xs-6 select-category js-states form-control" style="width: 100%" name="category_tag" multiple="multiple"></select>
@@ -21,12 +21,11 @@
                             <label for="category-movie">Imdb Id</label>
                             <input type="text" class="form-control" name="imdb_id" id="imdb_id" placeholder="Input imdb" />
                             <label for="country_tag">Country</label>
-                            <select class="col-xs-6 select-country js-states form-control" style="width: 100%" name="country_tag">
-                                <option label="Mỹ" data-select2-id="Mỹ"></option>
-                                <option label="Nhật Bản" data-select2-id="Nhật Bản"></option>
-                                
+                            <select class="col-xs-6 select-country form-control" style="width: 100%" name="country_tag">
+                                <option value="0">Mỹ</option>
+                                <option value="1" disabled="disabled">Hàn Quốc</option>
+                                <option value="2">Nhật Bản</option>
                             </select>
-                            @*<input type="text" class="form-control" name="Country" id="country" placeholder="Input country" />*@
                             <label for="category-movie">Release date</label>
                             <div class="input-group date">
                                 <div class="input-group-addon">
@@ -41,7 +40,11 @@
                             <label for="category-movie">Image Url</label>
                             <input type="text" class="form-control" name="image_url" id="image_url" placeholder="Input image url" />
                             <label for="category-movie">Movie Type</label>
-                            <input type="text" class="form-control" name="movie_type" id="movie_type" placeholder="Select movie type" />
+                            <select class="col-xs-6 select-type form-control" style="width: 100%" name="select-type">
+                                <option value="0">Phim lẻ</option>
+                                <option value="1">Phim bộ</option>
+                                <option value="2">Phim hay</option>
+                            </select>
                         </div>
                         <!-- /.form-group -->
                     </div>
@@ -62,47 +65,52 @@
 <script>
     $(document).ready(function () {
         $(".select-category").select2({
-            dropdownParent: $('#modal-upload-movie'),
+            dropdownParent: $('#myModal'),
             placeholder: 'Select an option',
             selectOnClose: true,
             tags: true,
             width: 'resolve',
         });
         $(".select-actor").select2({
-            dropdownParent: $('#modal-upload-movie'),
+            dropdownParent: $('#myModal'),
             placeholder: 'Select an option',
             selectOnClose: true,
             tags: true,
             width: 'resolve',
         });
         $(".select-country").select2();
+        $(".select-type").select2();
 
         $('#release_date').datepicker({
             autoclose: true
         })
 
+        $(".modal").on("hidden.bs.modal", function () {
+            $(".modal-body input ").val("");
+        });
     });
 
-    function saveMovie(){
+    function saveMovie() {
+        debugger;
         var movie = new Object();
-        movie.MovieName = $("#movie_name").val();
-        movie.ImdbId = $("#imdb_id").val();
-        movie.Country = $(".select-country").val();
-        movie.ReleaseDate = $("#release_date").val();
-        movie.MovieType = $("#movie_type").val();
-        movie.Trailer = $("#trailer").val();
-        movie.GoogleDrive = $("#google_drive").val();
-        movie.ImageUrl = $("#image_url").val();
-        movie.CategoryTag = $(".select-category").val();
-        movie.ActorTag = $(".select-actor").val();
+        movie.MovieName = $('#movie_name').val();
+        movie.ImdbId = $('#imdb_id').val();
+        movie.Country = $('.select-country').val();
+        movie.ReleaseDate = $('#release_date').val();
+        movie.MovieType = $('.select-type').val();
+        movie.Trailer = $('#trailer').val();
+        movie.GoogleDrive = $('#google_drive').val();
+        movie.ImageUrl = $('#image_url').val();
+        movie.CategoryTag = $('.select-category').val().join(", ");
+        movie.ActorTag = $('.select-actor').val().join(", ");
         movie.CategoryId = -1;
-        console.log(JSON.stringify(movie));
 
         var url = '@Url.Action("Create", "Movie")';
         if ($("#movie_id").val() !== null && $("#movie_id").val() !== '') {
-                url = '@Url.Action("Update", "Movie")';
-                movie.Id = $("#movie_id").val();
-            }
+            url = '@Url.Action("Update", "Movie")';
+            movie.Id = $("#movie_id").val();
+        }
+
         $.ajax({
             type: "POST",
             url: url,
@@ -113,13 +121,12 @@
             success: function (data) {
                 $('#example2').DataTable().draw();
             },
-         });
+            error: function (xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+            });
         $("#myModal").modal('hide');
 
         return false;
     }
-
-    $(".modal").on("hidden.bs.modal", function () {
-        $(".modal-body input ").val("");
-    });
 </script>

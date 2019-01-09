@@ -1,23 +1,21 @@
-﻿using Google.Apis.Drive.v3;
-using Microsoft.AspNetCore.Mvc;
-using Movie.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Movie.Services.Models;
 using TopMovie.Helpers;
 using TopMovie.Models;
 
-namespace TopMovie.Controllers
+namespace TopMovie
 {
+    [AuthorizationAttribute]
     public class MovieController : Controller
     {
         webphimContext context = new webphimContext();
 
         public IActionResult Index()
         {
-            //CategoriesMoviesModel model = new CategoriesMoviesModel();
-            //model.categories = context.TbCategoryMovie.ToList();
-            //model.movies = context.TbMovie.ToList();
             return View();
         }
 
@@ -30,16 +28,10 @@ namespace TopMovie.Controllers
             return model.movies.ToList();
         }
 
-        [HttpGet]
-        public TbMovie GetById(int id)
-        {
-            return context.TbMovie.FirstOrDefault(c => c.Id == id);
-        }
-
         [HttpPost]
-        public int Create([FromBody] TbMovie movieData)
+        public int Create([FromBody] TbMovie movie)
         {
-            context.TbMovie.Add(movieData);
+            context.TbMovie.Add(movie);
             var result = context.SaveChanges();
             return result;
         }
