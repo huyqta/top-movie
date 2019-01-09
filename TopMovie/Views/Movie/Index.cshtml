@@ -28,7 +28,7 @@
                                 <th>Release date</th>
                                 <th>Trailer</th>
                                 <th>Trailer</th>
-                                <th>Trailer</th>
+                                <th>Image Poster</th>
                                 <th>Delete</th>
                                 <th>Update</th>
                             </tr>
@@ -63,7 +63,7 @@
             //'searching': false,
             //'ordering': true,
             //'info': true,
-            //'autoWidth': false,
+            'autoWidth': false,
             //'data': obj,
             "ajax": {
                 "url": "@Url.Action("GetAll", "Movie")",
@@ -83,8 +83,21 @@
                 { "data": "country", "name": "country" },
                 { "data": "releaseDate", "name": "releaseDate" },
                 { "data": "movieType", "name": "movieType" },
-                { "data": "trailer", "name": "trailer" },
-                { "data": "imageUrl", "name": "imageUrl" },
+                { 
+                    "data": "trailer", 
+                    "name": "trailer",
+                    "render": function(data,type,full,meta){
+                        return data;
+                    }
+                    
+                },
+                { 
+                    "data": "imageUrl", 
+                    "name": "imageUrl", 
+                    "render": function(data,type,full,meta){
+                        return '<img src="'+data+'" width=150 />';
+                    }
+                },
                 {
                     data: null, render: function (data, type, row) {
                         return "<a href='#' class='btn btn-info' onclick=DeleteCategory(" + row.id + "); >Delete</a>";
@@ -101,12 +114,13 @@
                     "targets": [0],
                     "visible": false,
                     "searchable": false
-                }
+                },
+                
             ]
         })
     })
 
-    function ShowCategory(id) {
+    function ShowMovie(id) {
         $.ajax({
             url: "Movie/GetById/" + id,
             type: "GET",
@@ -118,7 +132,7 @@
         })
     }
 
-    function DeleteCategory(id) {
+    function DeleteMovie(id) {
         $.ajax({
             url: "Movie/Delete/" + id,
             type: "GET",
