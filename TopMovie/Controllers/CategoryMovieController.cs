@@ -25,6 +25,19 @@ namespace TopMovie.Controllers
         [HttpPost]
         public List<TbCategoryMovie> GetAll()
         {
+            //var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            //var start = Request.Form.GetValues("start").FirstOrDefault();
+            //var length = Request.Form.GetValues("length").FirstOrDefault();
+            //var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+            //var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+            //var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+
+
+            ////Paging Size (10,20,50,100)    
+            //int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            //int skip = start != null ? Convert.ToInt32(start) : 0;
+            //int recordsTotal = 0;
+
             CategoriesMoviesModel model = new CategoriesMoviesModel();
             model.categories = context.TbCategoryMovie.ToList();
             model.movies = context.TbMovie.ToList();

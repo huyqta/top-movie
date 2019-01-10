@@ -44,6 +44,7 @@
     @*<script src="~/bower_components/admin-lte/plugins/iCheck/icheck.min.js"></script>*@
     <!-- AdminLTE App -->
     <script src="~/dist/js/adminlte.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
     @{
         var username = HttpContextAccessor.HttpContext.Session.GetString("username");
     }
@@ -89,7 +90,7 @@
                                                 <a href="#">
                                                     <div class="pull-left">
                                                         <!-- User Image -->
-                                                        <img src="~/dist/lte/img/avatar.png" class="img-circle" alt="User Image">
+                                                        <img src="~/dist/img/avatar.png" class="img-circle" alt="User Image">
                                                     </div>
                                                     <!-- Message title and timestamp -->
                                                     <h4>
@@ -175,14 +176,14 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="~/dist/lte/img/avatar.png" class="user-image" alt="User Image">
+                                    <img src="~/dist/img/avatar.png" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs">@username</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="~/dist/lte/img/avatar.png" class="img-circle" alt="User Image">
+                                        <img src="~/dist/img/avatar.png" class="img-circle" alt="User Image">
                                         <p>
                                             @username - Web Developer
                                             <small>Member since Nov. 2012</small>
@@ -229,7 +230,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="~/dist/lte/img/avatar.png" class="img-circle" alt="User Image">
+                            <img src="~/dist/img/avatar.png" class="img-circle" alt="User Image">
                         </div>
                         <div class="pull-left info">
                             <p>@username</p>

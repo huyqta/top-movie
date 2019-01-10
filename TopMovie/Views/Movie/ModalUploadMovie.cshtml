@@ -68,34 +68,38 @@
 <script src="~/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script>
     $(document).ready(function () {
-        $(".select-category").select2({
-            dropdownParent: $('#myModal'),
-            placeholder: 'Select an option',
-            selectOnClose: true,
-            tags: true,
-            width: 'resolve',
-        });
-        $(".select-actor").select2({
-            dropdownParent: $('#myModal'),
-            placeholder: 'Select an option',
-            selectOnClose: true,
-            tags: true,
-            width: 'resolve',
-        });
-        $(".select-country").select2();
-        $(".select-type").select2();
 
-        $('#release_date').datepicker({
-            autoclose: true
-        })
+        // $(".select-category").select2({
+        //    dropdownParent: $('#myModal'),
+        //    placeholder: 'Select an option',
+        //    selectOnClose: true,
+        //    tags: true,
+        //    width: 'resolve',
+        //});
+        //$(".select-actor").select2({
+        //    dropdownParent: $('#myModal'),
+        //    placeholder: 'Select an option',
+        //    selectOnClose: true,
+        //    tags: true,
+        //    width: 'resolve',
+        //});
+        //$(".select-country").select2();
+        //$(".select-type").select2();
+
+        //$('#release_date').datepicker({
+        //    autoclose: true
+        //})
+
+        //}
+
 
         $(".modal").on("hidden.bs.modal", function () {
             $(".modal-body input ").val("");
         });
+
     });
 
     function saveMovie() {
-        debugger;
         var movie = new Object();
         movie.MovieName = $('#movie_name').val();
         movie.ImdbId = $('#imdb_id').val();
@@ -107,7 +111,7 @@
         movie.ImageUrl = $('#image_url').val();
         movie.CategoryTag = $('.select-category').val().join(", ");
         movie.ActorTag = $('.select-actor').val().join(", ");
-        movie.CategoryId = -1;
+        //movie.CategoryId = -1;
 
         var url = '@Url.Action("Create", "Movie")';
         if ($("#movie_id").val() !== null && $("#movie_id").val() !== '') {
@@ -130,7 +134,7 @@
             }
             });
         $("#myModal").modal('hide');
-
+        ReloadTable();
         return false;
     }
 </script>

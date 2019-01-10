@@ -7,7 +7,7 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary btn-lg" onclick="ShowMovie(-1)";>
                 ADD MOVIE
             </button>
             @*<input type="button" value="ADD" title="ADD" class="btn btn-block btn-success" />*@
@@ -22,11 +22,11 @@
                             <tr>
                                 <th>Category movie</th>
                                 <th>Movie name</th>
-                                <th>Country</th>
+                                @*<th>Movie type</th>*@
                                 <th>IMDB</th>
-                                <th>Movie type</th>
+                                <th>Country</th>
                                 <th>Release date</th>
-                                <th>Trailer</th>
+                                <th>Movie type</th>
                                 <th>Trailer</th>
                                 <th>Image Poster</th>
                                 <th>Delete</th>
@@ -35,6 +35,7 @@
                         </thead>
                     </table>
                 </div>
+                
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->
@@ -49,13 +50,13 @@
 <!-- DataTables -->
 <script src="~/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="~/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
+<script src="https://content.jwplatform.com/libraries/DEi221lx.js"></script>
 <!-- page script -->
 <script>
     $(function () {
         $('#example2').DataTable({
             'processing': true, // for show progress bar
-            'serverSide': true, // for process server side
+            //'serverSide': true, // for process server side
             'filter': true, // this is for disable filter (search box)
             'orderMulti': false, // for disable multiple column at once
             'paging': true,
@@ -78,16 +79,22 @@
             "columns": [
                 { "data": "id", "name": "id" },
                 { "data": "movieName", "name": "movieName" },
-                { "data": "categoryId", "name": "categoryId" },
+                //{ "data": "categoryId", "name": "categoryId" },
                 { "data": "imdbId", "name": "imdbId" },
                 { "data": "country", "name": "country" },
-                { "data": "releaseDate", "name": "releaseDate" },
+                {
+                    "data": "releaseDate",
+                    "name": "releaseDate",
+                    "render": function (data, type, full, meta) {
+                        return moment(data).format("DD/MM/YYYY");
+                    }
+                },
                 { "data": "movieType", "name": "movieType" },
                 { 
                     "data": "trailer", 
                     "name": "trailer",
                     "render": function(data,type,full,meta){
-                        return data;
+                        return '<a href="' + data + '"><img src="../dist/img/youtube-play-btn.png" width=30 /></a>';
                     }
                     
                 },
@@ -100,12 +107,12 @@
                 },
                 {
                     data: null, render: function (data, type, row) {
-                        return "<a href='#' class='btn btn-info' onclick=DeleteCategory(" + row.id + "); >Delete</a>";
+                        return "<a href='#' class='btn btn-info' onclick=DeleteMovie(" + row.id + "); >Delete</a>";
                     }
                 },
                 {
                     data: null, render: function (data, type, row) {
-                        return "<a href='#' class='btn btn-danger' onclick=ShowCategory(" + row.id + "); >Edit</a>";
+                        return "<a href='#' class='btn btn-danger' onclick=ShowMovie(" + row.id + "); >Edit</a>";
                     }
                 },
             ],
@@ -120,16 +127,78 @@
         })
     })
 
-    function ShowMovie(id) {
+    function ReloadTable() {
         $.ajax({
-            url: "Movie/GetById/" + id,
-            type: "GET",
+            url: "@Url.Action("GetAll", "Movie")",
+            type: "POST",
             success: function (result) {
-                $('#category_name').val(result.categoryName);
-                $('#category_id').val(result.id);
-                $('#myModal').modal('show');
+                $('#example2').DataTable().clear();
+                $('#example2').DataTable().rows.add(result);
+                $('#example2').DataTable().draw();
             },
         })
+    }
+
+    function ShowMovie(id) {
+        if (id !== -1) {
+            $.ajax({
+                url: "Movie/GetById/" + id,
+                type: "GET",
+                success: function (result) {
+                    if (result !== null) {
+                        $('#movie_id').val(id);
+                        $('#movie_name').val(result.movieName);
+                        $('#imdb_id').val(result.imdbId);
+                        $('.select-country').val(result.country);
+                        $('#release_date').val(result.releaseDate);
+                        $('.select-type').val(result.movieType);
+                        $('#trailer').val(result.trailer);
+                        $('#google_drive').val(result.googleDrive);
+                        $('#image_url').val(result.imageUrl);
+                        var arrayCat = result.categoryTag.split(',');
+                        $('.select-category').select2({ multiple: true, data: arrayCat, tags: true, });
+                        $('.select-category').val(arrayCat);
+                        $('.select-category').trigger('change');
+                        var arrayAct = result.actorTag.split(',');
+                        $('.select-actor').select2({ multiple: true, data: arrayAct, tags: true, });
+                        $('.select-actor').val(arrayAct);
+                        $('#myModal').modal('show');
+
+                    }
+                    else {
+                        alert('There is not movie selected!');
+                    }
+                },
+            })
+        }
+        else {
+            $(".select-category").select2({
+                dropdownParent: $('#myModal'),
+                placeholder: 'Select an option',
+                selectOnClose: true,
+                tags: true,
+                width: 'resolve',
+            });
+            $(".select-actor").select2({
+                dropdownParent: $('#myModal'),
+                placeholder: 'Select an option',
+                selectOnClose: true,
+                tags: true,
+                width: 'resolve',
+            });
+            $(".select-country").select2();
+            $(".select-type").select2();
+
+            $('#release_date').datepicker({
+                autoclose: true
+            })
+            $(".modal").on("hidden.bs.modal", function () {
+                $(".modal-body input ").val("");
+            });
+            $('#myModal').modal('show');
+
+        }
+        
     }
 
     function DeleteMovie(id) {
@@ -137,8 +206,8 @@
             url: "Movie/Delete/" + id,
             type: "GET",
             success: function (result) {
-                $('#example2').DataTable().draw();
-            },
+                ReloadTable();
+            }
         })
     }
 </script>

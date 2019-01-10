@@ -28,6 +28,12 @@ namespace TopMovie
             return model.movies.ToList();
         }
 
+        [HttpGet]
+        public TbMovie GetById(int id)
+        {
+            return context.TbMovie.FirstOrDefault(c => c.Id == id);
+        }
+
         [HttpPost]
         public int Create([FromBody] TbMovie movie)
         {

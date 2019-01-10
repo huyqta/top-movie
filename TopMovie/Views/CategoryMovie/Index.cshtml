@@ -48,7 +48,7 @@
     $(function () {
         $('#example2').DataTable({
             'processing': true, // for show progress bar
-            'serverSide': true, // for process server side
+            //'serverSide': true, // for process server side
             'filter': true, // this is for disable filter (search box)
             'orderMulti': false, // for disable multiple column at once
             'paging': true,
@@ -92,6 +92,19 @@
         })
     })
 
+    function ReloadTable() {
+        $.ajax({
+            url: "@Url.Action("GetAll", "CategoryMovie")",
+            type: "POST",
+            success: function (result) {
+                $('#example2').DataTable().clear();
+                $('#example2').DataTable().rows.add(result);
+                $('#example2').DataTable().draw();
+            },
+        })
+        
+    }
+
     function ShowCategory(id) {
         $.ajax({
             url: "CategoryMovie/GetById/" + id,
@@ -109,8 +122,9 @@
             url: "CategoryMovie/Delete/" + id,
             type: "GET",
             success: function (result) {
-                $('#example2').DataTable().draw();
+                ReloadTable();
             },
         })
+        
     }
 </script>

@@ -128,8 +128,8 @@ namespace Movie.Services.Models
 
                 entity.Property(e => e.MovieType)
                     .HasColumnName("movie_type")
-                    .HasColumnType("int(4)")
-                    .HasDefaultValueSql("1");
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ReleaseDate).HasColumnName("release_date");
 
