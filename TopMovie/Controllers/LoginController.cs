@@ -29,31 +29,38 @@ namespace TopMovie
             if (username != null && password != null)// && context.TbAccount.Any(a=>a.Username == username && VerifyMd5Hash(md5Hash, password, GetMd5Hash(md5Hash, password))))
             {
                 var account = context.TbAccount.FirstOrDefault(a => a.Username == username);
-                if (account != null)
+                if (account != null && account.AccountType == 0)
                 {
                     var verifyAccount = VerifyMd5Hash(md5Hash, password, account.Password);
                     if (verifyAccount)
                     {
                         HttpContext.Session.SetString("username", username);
-                        return View("~/Views/Home/Index.cshtml");
+                        //var admin_token = GetMd5Hash(md5Hash, account.Username + account.Password + account.AccountType);
+                        //account.AdminToken = admin_token;
+                        //context.Entry<TbAccount>(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        //context.SaveChanges();
+                        return RedirectToAction("Index", "Admin");
                     }
                 }
             }
             else
             {
                 ViewBag.error = "Invalid Account";
-                return View("~/Views/Login/Index.cshtml");
+                return RedirectToAction("Index", "Login");
             }
             ViewBag.error = "Invalid Account";
-            return View("~/Views/Login/Index.cshtml");
+            return RedirectToAction("Index", "Login");
         }
 
         //[Route("logout")]
         [HttpGet]
         public IActionResult Logout()
         {
+            
+            //context.Entry<TbAccount>(account).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            //context.SaveChanges();
             HttpContext.Session.Remove("username");
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Login");
         }
 
         static string GetMd5Hash(MD5 md5Hash, string input)

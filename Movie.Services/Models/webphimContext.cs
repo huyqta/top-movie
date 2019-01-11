@@ -44,6 +44,11 @@ namespace Movie.Services.Models
                     .HasColumnName("account_type")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.AdminToken)
+                    .HasColumnName("admin_token")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasColumnName("password")

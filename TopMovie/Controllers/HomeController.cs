@@ -5,17 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Movie.Services.Models;
 using TopMovie.Helpers;
 using TopMovie.Models;
 
 namespace TopMovie.Controllers
 {
-    [AuthorizationAttribute]
     public class HomeController : Controller
     {
+        webphimContext context = new webphimContext();
+
         public IActionResult Index()
         {
-            return View();
+            CategoriesMoviesModel model = new CategoriesMoviesModel();
+            model.movies = context.TbMovie.ToList();
+            model.categories = context.TbCategoryMovie.ToList();
+            return View(model);
         }
 
         public IActionResult About()

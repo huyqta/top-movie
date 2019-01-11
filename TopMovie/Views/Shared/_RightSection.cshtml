@@ -1,0 +1,150 @@
+﻿@* --- RIGHT SECTION--- *@
+<div class="col-md-3">
+    @* --- NEWS --- *@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">WELCOME!!</h3>
+                </div>
+                <div class="box-body box-profile">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+    @* --- MOVIE BY PERIOD --- *@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#daily" data-toggle="tab">Daily</a></li>
+                    <li><a href="#weekly" data-toggle="tab">Weekly</a></li>
+                    <li><a href="#monthly" data-toggle="tab">Monthly</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="daily">
+                        @foreach (var mv in Model.movies)
+                        {
+                            <div class="box">
+                                <div class="box-body box-profile">
+                                    <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+
+                                    <h3 class="profile-username">@mv.MovieName</h3>
+
+                                    <p class="text-muted">
+                                        <i class="fas fa-tags"></i>@mv.ActorTag
+                                    </p>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        }
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="weekly">
+                        @foreach (var mv in Model.movies)
+                        {
+                            <div class="box">
+                                <div class="box-body box-profile">
+                                    <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+
+                                    <h3 class="profile-username">@mv.MovieName</h3>
+
+                                    <p class="text-muted">
+                                        <i class="fas fa-tags"></i>@mv.ActorTag
+                                    </p>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        }
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="monthly">
+                        @foreach (var mv in Model.movies)
+                        {
+                            <div class="box">
+                                <div class="box-body box-profile">
+                                    <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+
+                                    <h3 class="profile-username">@mv.MovieName</h3>
+
+                                    <p class="text-muted">
+                                        <i class="fas fa-tags"></i>@mv.ActorTag
+                                    </p>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                        }
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+        </div>
+    </div>
+    @* --- HOT TOPICS --- *@
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">HOT TOPICS</h3>
+                </div>
+                <div class="box-body box-profile">
+                    <ul class="list-group list-group-unbordered">
+                        @foreach (var mv in Model.movies)
+                        {
+                            <li class="list-group-item">
+                                <b>@mv.MovieName</b> <a class="pull-right">@mv.ActorTag</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+    </div>
+    @* --- RECENT COMMENTS --- *@
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">RECENT COMMENTS</h3>
+        </div>
+        <div class="box-body box-profile">
+            <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                </li>
+            </ul>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    @* --- RECENT COMMENTS --- *@
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">CATEGORIES</h3>
+        </div>
+        <div class="box-body box-profile">
+            <ul class="list-group list-group-unbordered">
+                @foreach (var cat in Model.categories)
+                {
+                    <li class="list-group-item">
+                        @cat.CategoryName
+                    </li>
+                }
+
+            </ul>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>

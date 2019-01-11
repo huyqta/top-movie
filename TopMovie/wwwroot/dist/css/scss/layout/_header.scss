@@ -1,0 +1,38 @@
+﻿@import "../base/color.scss";
+
+.header-menu {
+    height: 50px;
+    background-color: $head-background;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+
+    .menu-item {
+        font-family: 'Oswald', sans-serif;
+        font-size: 24px;
+        color: white;
+        margin: 0 15px;
+    }
+}
+
+.logo-text {
+    font-family: 'Coiny', cursive;
+    font-size: 30px;
+    padding-top: 10px;
+
+    .logo-color-1 {
+        color: $logo-color-1;
+    }
+
+    .logo-color-2 {
+        color: $logo-color-2;
+    }
+}
+
+#search-box {
+    margin-top: 5px;
+
+    .search-textbox {
+        border: 1px solid white;
+    }
+}
