@@ -16,6 +16,7 @@ namespace Movie.Services.Models
         }
 
         public virtual DbSet<TbAccount> TbAccount { get; set; }
+        public virtual DbSet<TbActor> TbActor { get; set; }
         public virtual DbSet<TbCategoryMovie> TbCategoryMovie { get; set; }
         public virtual DbSet<TbMovie> TbMovie { get; set; }
 
@@ -58,6 +59,27 @@ namespace Movie.Services.Models
                 entity.Property(e => e.Username)
                     .IsRequired()
                     .HasColumnName("username")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TbActor>(entity =>
+            {
+                entity.ToTable("tb_actor", "webphim");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.ActorName)
+                    .IsRequired()
+                    .HasColumnName("actor_name")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ActorType)
+                    .IsRequired()
+                    .HasColumnName("actor_type")
                     .HasMaxLength(500)
                     .IsUnicode(false);
             });

@@ -14,6 +14,7 @@
     <EmbeddedResource Remove="wwwroot\bower_components\fullcalendar\**" />
     <None Remove="wwwroot\bower_components\admin-lte\**" />
     <None Remove="wwwroot\bower_components\fullcalendar\**" />
+    <Content Remove="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
