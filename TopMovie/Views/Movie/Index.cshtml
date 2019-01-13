@@ -1,6 +1,6 @@
 ﻿@model CategoriesMoviesModel;
 @{
-    ViewData["Title"] = "Category COntroller";
+    ViewData["Title"] = "Movie";
 }
 
 <!-- Main content -->
@@ -53,7 +53,21 @@
 <script src="https://content.jwplatform.com/libraries/DEi221lx.js"></script>
 <!-- page script -->
 <script>
+    var listActor = [];
+    var listType = [];
     $(function () {
+        $.ajax({
+            url: "Actor/GetAll/",
+            type: "POST",
+            success: function (result) {
+                listActor = $.map(result, function (obj) {
+                    obj.id = obj.actorName; // replace pk with your identifier
+                    obj.text = obj.actorName;
+                    return obj;
+                });
+            }
+        })
+
         $('#example2').DataTable({
             'processing': true, // for show progress bar
             //'serverSide': true, // for process server side
@@ -162,6 +176,7 @@
                         var arrayAct = result.actorTag.split(',');
                         $('.select-actor').select2({ multiple: true, data: arrayAct, tags: true, });
                         $('.select-actor').val(arrayAct);
+                        $('.select-actor').trigger('change');
                         $('#myModal').modal('show');
 
                     }

@@ -82,6 +82,11 @@ namespace Movie.Services.Models
                     .HasColumnName("actor_type")
                     .HasMaxLength(500)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Title)
+                    .HasColumnName("title")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TbCategoryMovie>(entity =>
@@ -132,6 +137,11 @@ namespace Movie.Services.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
+                entity.Property(e => e.Description)
+                    .HasColumnName("description")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.GoogleDrive)
                     .HasColumnName("google_drive")
                     .HasMaxLength(500)
@@ -153,12 +163,27 @@ namespace Movie.Services.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
+                entity.Property(e => e.MovieTag)
+                    .HasColumnName("movie_tag")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.MovieType)
                     .HasColumnName("movie_type")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.PosterUrl)
+                    .HasColumnName("poster_url")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ReleaseDate).HasColumnName("release_date");
+
+                entity.Property(e => e.StudioTag)
+                    .HasColumnName("studio_tag")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Trailer)
                     .HasColumnName("trailer")

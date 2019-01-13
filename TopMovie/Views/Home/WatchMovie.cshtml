@@ -1,0 +1,76 @@
+﻿@model Movie.Services.Models.TbMovie;
+<h2 class="text-bold">@Model.MovieName</h2>
+@*<img id="movie-box" class="movie-img img-responsive" src="@Model.ImageUrl" alt="@Model.MovieName">
+    @Model.GoogleDrive
+<input type="button" class="btn btn-info" value="Play" onclick="PlayMovie()"  />
+<input type="button" class="btn btn-info" value="Rate" />*@
+@Html.Raw(@Model.GoogleDrive)
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <i class="fa fa-text-width"></i>
+        <input type="hidden" id="movie-url" value="@Model.GoogleDrive" />
+        <h3 class="box-title">Movie Information:</h3>
+    </div>
+    
+    <!-- /.box-header -->
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>ID Code:</dt>
+            <dd>@Model.ImdbId</dd>
+            <dt>Release Date:</dt>
+            <dd>@Model.ReleaseDate.Value.ToString("yyyy-MM-dd")</dd>
+            <dt>Category:</dt>
+            <dd>
+                @foreach (var category in Model.CategoryTag.Split(","))
+                {
+                    <a href="@Url.Action("Category", "Home", new { category = category })" target="_self">@category</a>
+                }
+            </dd>
+            <dt>Tags:</dt>
+            <dd>
+                @foreach (var tag in Model.MovieTag.Split(","))
+                {
+                    <a href="@Url.Action("Tag", "Home", new { tag = tag }))" target="_self">@tag</a>
+                }
+            </dd>
+            <dt>Actress: </dt>
+            <dd>
+                @foreach (var actor in Model.ActorTag.Split(","))
+                {
+                    <a href="@Url.Action("Actor", "Home", new { actor = actor })" target="_self">@actor</a>
+                }
+            </dd>
+        </dl>
+    </div>
+    @*<video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+           poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+        <source src="" type='video/mp4'>
+        
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+    </video>*@
+
+    
+    <!-- /.box-body -->
+</div>
+@*<script src="https://vjs.zencdn.net/7.4.1/video.js"></script>*@
+<script src="https://content.jwplatform.com/libraries/rI5FHjdp.js"></script>
+@*<script>
+    $(function () {
+        PlayMovie();
+    });
+    function PlayMovie() {
+        jwplayer("movie-box").setup({
+            "file": "https://drive.google.com/uc?export=download&confirm=Xl_e&id=1-e5zPzVpwGS-W7Cpnl3ngSEkwMUVmzPY",
+            "image": "@Model.ImageUrl",
+            "height": "auto",
+            "width": "100%",
+            "autostart": false,
+            "cast": {},
+            "mute": false
+        });
+    }
+</script>*@
+@*http://cdnx.hls4.me/01280/01280_720p.m3u8*@

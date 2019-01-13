@@ -1,0 +1,131 @@
+﻿@model CategoriesMoviesModel;
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                Add actor
+            </button>
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of the Actors</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Actor</th>
+                                <th>Title</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    @Html.Partial("ModalUploadActor.cshtml")
+    <!-- Modal -->
+
+</section>
+<!-- /.content -->
+<!-- /.content -->
+<!-- DataTables -->
+<script src="~/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- page script -->
+<script>
+    $(function () {
+        $('#example2').DataTable({
+            'processing': true, // for show progress bar
+            //'serverSide': true, // for process server side
+            'filter': true, // this is for disable filter (search box)
+            'orderMulti': false, // for disable multiple column at once
+            'paging': true,
+            //'lengthChange': false,
+            //'searching': false,
+            //'ordering': true,
+            //'info': true,
+            //'autoWidth': false,
+            //'data': obj,
+            "ajax": {
+                "url": "@Url.Action("GetAll", "Actor")",
+                "type": "POST",
+                "dataSrc": function (json) {
+                    for (var i = 0, ien = json.length; i < ien; i++) {
+                        json[i][0] = '<a href="/message/' + json[i][0] + '>View message</a>';
+                    }
+                    return json;
+                },
+            },
+            "columns": [
+                { "data": "id", "name": "id"},
+                { "data": "actorName", "name": "actorName", "width": "40%"},
+                { "data": "title", "name": "title", "width": "60%" },
+                {
+                    data: null, render: function (data, type, row) {
+                        return "<a href='#' class='btn btn-info' onclick=DeleteActor(" + row.id + "); >Delete</a>";
+                    }
+                },
+                {
+                    data: null, render: function (data, type, row) {
+                        return "<a href='#' class='btn btn-danger' onclick=ShowActor(" + row.id + "); >Edit</a>";
+                    }
+                },
+            ],
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }
+            ]
+        })
+    })
+
+    function ReloadTable() {
+        $.ajax({
+            url: "@Url.Action("GetAll", "Actor")",
+            type: "POST",
+            success: function (result) {
+                $('#example2').DataTable().clear();
+                $('#example2').DataTable().rows.add(result);
+                $('#example2').DataTable().draw();
+            },
+        })
+        
+    }
+
+    function ShowActor(id) {
+        $.ajax({
+            url: "Actor/GetById/" + id,
+            type: "GET",
+            success: function (result) {
+                $('#actor_name').val(result.actorName);
+                $('#title').val(result.title);
+                $('#actor_id').val(result.id);
+                $('#myModal').modal('show');
+            },
+        })
+    }
+
+    function DeleteActor(id) {
+        $.ajax({
+            url: "Actor/Delete/" + id,
+            type: "GET",
+            success: function (result) {
+                ReloadTable();
+            },
+        })
+        
+    }
+</script>

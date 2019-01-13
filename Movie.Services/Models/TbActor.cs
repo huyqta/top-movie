@@ -8,5 +8,6 @@ namespace Movie.Services.Models
         public int Id { get; set; }
         public string ActorName { get; set; }
         public string ActorType { get; set; }
+        public string Title { get; set; }
     }
 }

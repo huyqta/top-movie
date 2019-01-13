@@ -1,19 +1,19 @@
-﻿<div class="row">
-    @foreach (var mv in Model.movies)
-    {
-        <div class="col-md-4">
-            <div class="box">
-                <div class="box-body box-profile">
-                    <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+﻿@model CategoriesMoviesModel;
+<div class="row render-ajax">
+        @foreach (var mv in Model.movies)
+        {
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-body box-profile">
+                        <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                        <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target = "_self"><h3 class="profile-username text-bold">@mv.MovieName</h3>TTT</a>
 
-                    <h3 class="profile-username">@mv.MovieName</h3>
-
-                    <p class="text-muted">
-                        <i class="fas fa-tags"></i>@mv.ActorTag
-                    </p>
+                        <p class="text-muted">
+                            <i class="fas fa-tags"></i>@mv.ActorTag
+                        </p>
+                    </div>
                 </div>
-                <!-- /.box-body -->
             </div>
-        </div>
-    }
-</div>
+        }
+    <p>ViewBag["URL"]</p>
+    </div>

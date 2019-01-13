@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="~/bower_components/select2/dist/css/select2.min.css" />
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="~/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-
+    <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,8 +40,11 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
+    <script scr="https://cdn.jwplayer.com/libraries/DEi221lx.js"></script>
+    @*<script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>*@
     <!-- jQuery 3 -->
     <script src="~/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/bower_components/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- iCheck -->
@@ -56,15 +59,30 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
-                        <a class="logo-text" href="#">
-                            <span class="logo-color-1">AbcAz</span>
-                            <span>.</span>
-                            <span class="logo-color-2">Com</span>
-                        </a>
-                        <a class="menu-item" href="#">Content Menu 1</a>
-                        <a class="menu-item" href="#">Contact 2</a>
-                        <a class="menu-item" href="#">Delivery</a>
-                        <a class="menu-item" href="#">Online Store</a>
+                        <ul class="top-menu nav navbar-nav">
+                            <li>
+                                <a class="logo-text" href="#">
+                                    <span class="logo-color-1">AbcAz</span>
+                                    <span>.</span>
+                                    <span class="logo-color-2">Com</span>
+                                </a>
+                            </li>
+                            <li><a class="menu-item" href="#">Link <span class="sr-only">(current)</span></a></li>
+                            <li><a class="menu-item" href="#">Link</a></li>
+                            <li class="dropdown menu-item">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
                     </div>
                     <div class="col-md-4">
                         <form action="#" method="get" id="search-box">
@@ -84,6 +102,10 @@
         <div class="row">
             <div class="col-md-9">
                 @RenderBody()
+                @*@{
+                    IgnoreBody();
+                        }*@
+                @*@await Component.InvokeAsync("Movie")*@
             </div>
             @Html.Partial("_RightSection.cshtml");
         </div>

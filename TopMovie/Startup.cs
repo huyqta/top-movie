@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Movie.Services.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TopMovie
 {
@@ -25,6 +27,7 @@ namespace TopMovie
         public void ConfigureServices(IServiceCollection services)
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDbContext<webphimContext>();
             services.AddMvc();
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromSeconds(600);
