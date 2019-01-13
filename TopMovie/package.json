@@ -10,7 +10,7 @@
   "devDependencies": {
     "R2": "^1.4.3",
     "grunt": "^0.4.5",
-    "grunt-bootlint": "^0.9.1",
+    "grunt-bootlint": "^0.12.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-csslint": "^0.5.0",
@@ -26,7 +26,10 @@
     "grunt-less": "^0.1.7",
     "grunt-notify": "^0.4.5",
     "grunt-text-replace": "^0.4.0",
-    "less": "^2.7.2"
+    "gulp-livereload": "^4.0.1",
+    "gulp-sass": "^4.0.2",
+    "less": "^2.7.2",
+    "node-sass": "^4.11.0"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -43,6 +46,7 @@
     "flot": "^0.8.0-alpha",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.4.0",
+    "gulp": "^4.0.0",
     "inputmask": "^3.3.7",
     "ion-rangeslider": "^2.2.0",
     "ionicons": "^3.0.0",

@@ -1,4 +1,4 @@
-﻿/*--------logo color*/
+/*--------logo color*/
 /*--------header menu background*/
 /*--------body background*/
 /*--------logo color*/
@@ -7,23 +7,11 @@
 /* THIS FILE IS IMPORTANT */
 /* ALL OVERRIDE OF ANY BOOTSTRAP CLASS PLEASE PUT HERE */
 /* PLEASE TEST EVERY PAGES HAD BEEN USED CLASS WHICH YOU MAKE CHANGES AFTER COMMIT */
-/*--------logo color*/
-/*--------header menu background*/
-/*--------body background*/
-/*--------logo color*/
-/*--------header menu background*/
-/*--------body background*/
 /* THIS FILE IS IMPORTANT */
 /* ALL OVERRIDE OF ANY BOOTSTRAP CLASS OR DEFAULT DOM PLEASE PUT HERE */
 /* PLEASE TEST EVERY PAGES HAD BEEN USED CLASS WHICH YOU MAKE CHANGES AFTER COMMIT */
 /* PUT COMMENT CLEARLY AND MUST*/
 /* Set font size of site to 13px */
-html {
-  /*height: 100% !important;*/ }
-
-form {
-  /*height: 100%;*/ }
-
 body {
   /*margin: 0 -15px;*/
   background: url("../../../img/weather.png") repeat; }
@@ -31,15 +19,9 @@ body {
 /*--------logo color*/
 /*--------header menu background*/
 /*--------body background*/
-/*--------logo color*/
-/*--------header menu background*/
-/*--------body background*/
-/*--------logo color*/
-/*--------header menu background*/
-/*--------body background*/
 .header-menu {
-  height: 50px;
-  background-color: white;
+  height: 60px;
+  background-color: #2D3956;
   display: flex;
   align-items: center;
   padding: 0 60px;
@@ -51,33 +33,46 @@ body {
   .header-menu .menu-item, .header-menu .menu-item a {
     font-family: 'Oswald', sans-serif;
     font-size: 24px;
-    /*color: white;*/
+    color: #9CAAC6;
     margin: 0 15px; }
+  .header-menu .dropdown-menu {
+    background-color: #2D3956; }
+  .header-menu .dropdown-menu > li > a {
+    color: #9CAAC6; }
 
 .logo-text {
   font-family: 'Coiny', cursive;
   font-size: 30px;
-  padding-top: 10px; }
+  padding-top: 8px;
+  float: left;
+  display: flex; }
   .logo-text .logo-color-1 {
-    color: #EC799A; }
+    color: #E0E9E9; }
   .logo-text .logo-color-2 {
-    color: #9F0251; }
+    color: #616A7F; }
 
 #search-box {
   margin-top: 5px; }
   #search-box .search-textbox {
-    border: 1px solid ligthgray; }
+    border: 1px solid white; }
 
 /*.header-menu .menu-item:hover {
     background: transparent !important;
 }*/
 .nav > li > a:focus, .nav > li > a:hover {
-  background: white;
-  background-color: white; }
+  background: transparent;
+  background-color: transparent;
+  color: white; }
 
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
-  background: white;
-  background-color: white; }
+  background: transparent;
+  background-color: transparent;
+  color: white; }
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+  background: transparent;
+  background-color: transparent;
+  color: white; }
 
 .homepage-content {
   margin-top: 15px; }

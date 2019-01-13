@@ -1,12 +1,12 @@
 ﻿@import "../base/color.scss";
 
 .header-menu {
-    height: 50px;
-    background-color: white;
+    height: 60px;
+    background-color: $head-background;
     display: flex;
     align-items: center;
     padding: 0 60px;
-
+    
     /*.menu-item {
         &:hover {
             background: transparent !important;
@@ -16,15 +16,25 @@
     .menu-item, .menu-item a {
         font-family: 'Oswald', sans-serif;
         font-size: 24px;
-        /*color: white;*/
+        color: $head_menu_text;
         margin: 0 15px;
+    }
+
+    .dropdown-menu{
+        background-color: $head-background;
+    }
+
+    .dropdown-menu>li>a{
+        color: $head_menu_text;
     }
 }
 
 .logo-text {
     font-family: 'Coiny', cursive;
     font-size: 30px;
-    padding-top: 10px;
+    padding-top: 8px;
+    float: left;
+    display: flex;
 
     .logo-color-1 {
         color: $logo-color-1;
@@ -39,7 +49,7 @@
     margin-top: 5px;
 
     .search-textbox {
-        border: 1px solid ligthgray;
+        border: 1px solid white;
     }
 }
 
@@ -47,11 +57,19 @@
     background: transparent !important;
 }*/
 .nav > li > a:focus, .nav > li > a:hover{
-    background: white;
-    background-color: white;
+    background: transparent;
+    background-color: transparent;
+    color: white;
 }
 
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
-    background: white;
-    background-color: white;
+    background: transparent;
+    background-color: transparent;
+    color: white;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    background: transparent;
+    background-color: transparent;
+    color: white;
 }

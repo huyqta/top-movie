@@ -1,18 +1,9 @@
-﻿@import "base/color";
-@import "base/layer";
-@import "base/typography";
+﻿@import "base/_color.scss";
+@import "base/_layer.scss";
+@import "base/_typography.scss";
 
-@import "helpers/commons";
-@import "helpers/overrides";
-
-@import "components/buttons";
-@import "components/checkboxes";
-@import "components/textboxs";
-@import "components/navigation";
-@import "components/tables";
-@import "components/lists";
-@import "components/hr";
-@import "components/inputDropdown";
+@import "helpers/_commons.scss";
+@import "helpers/_overrides.scss";
 
 @import "layout/_header.scss";
 
