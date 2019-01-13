@@ -15,6 +15,59 @@
     <None Remove="wwwroot\bower_components\admin-lte\**" />
     <None Remove="wwwroot\bower_components\fullcalendar\**" />
     <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\bowers\jquery-slimscroll\examples\nested.html" />
+    <Content Remove="wwwroot\bowers\jquery-slimscroll\examples\start-position.html" />
+    <Content Remove="wwwroot\bowers\jquery-slimscroll\examples\programmatic-scrolling.html" />
+    <Content Remove="wwwroot\bowers\jquery-slimscroll\examples\chaining.html" />
+    <Content Remove="wwwroot\bowers\jquery-slimscroll\examples\scrollbar.html" />
+    <Content Remove="wwwroot\bowers\jquery-slimscroll\examples\navigation.html" />
+    <Content Remove="wwwroot\bowers\jquery-slimscroll\jquery.slimscroll.min.js" />
+    <Content Remove="wwwroot\bowers\mocha\LICENSE" />
+    <Content Remove="wwwroot\bowers\mocha\History.md" />
+    <Content Remove="wwwroot\bowers\mocha\bower.json" />
+    <Content Remove="wwwroot\bowers\mocha\Readme.md" />
+    <Content Remove="wwwroot\bowers\mocha\mocha.css" />
+    <Content Remove="wwwroot\bowers\mocha\.bower.json" />
+    <Content Remove="wwwroot\bowers\mocha\mocha.js" />
+    <Content Remove="wwwroot\bowers\mocha\media\logo.svg" />
+    <Content Remove="wwwroot\bowers\bootstrap\Gruntfile.js" />
+    <Content Remove="wwwroot\bowers\bootstrap\LICENSE" />
+    <Content Remove="wwwroot\bowers\bootstrap\CHANGELOG.md" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\css\bootstrap.css" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\css\bootstrap-theme.css" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\css\bootstrap-theme.min.css" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\js\npm.js" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\js\bootstrap.js" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Remove="wwwroot\bowers\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\forms.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\utilities.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\navs.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\component-animations.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\responsive-utilities.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\grid.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\breadcrumbs.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\media.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\forms.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\text-emphasis.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\table-row.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\hide-text.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\grid.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\gradients.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\nav-divider.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\buttons.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\list-group.less" />
+    <Content Remove="wwwroot\bowers\bootstrap\less\mixins\image.less" />
   </ItemGroup>
 
   <ItemGroup>
@@ -2006,7 +2059,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\bindings\" />
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\dependencyLibs\" />
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\global\" />
