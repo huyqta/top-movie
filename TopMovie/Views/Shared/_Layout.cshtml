@@ -54,16 +54,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
 
-    <div class="container-fluid">
+    <div class="">
         <div class="header-menu">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
                         <a class="logo-text" href="#">
-                                    <span class="logo-color-1">AbcAz</span>
-                                    <span class="logo-color-2">.</span>
-                                    <span class="logo-color-1">Com</span>
-                                </a>
+                            <span class="logo-color-1">AbcAz</span>
+                            <span class="logo-color-2">.</span>
+                            <span class="logo-color-1">Com</span>
+                        </a>
                         <ul class="top-menu nav navbar-nav">
                             <li><a class="menu-item" href="#">Link <span class="sr-only">(current)</span></a></li>
                             <li><a class="menu-item" href="#">Link</a></li>
@@ -100,18 +100,13 @@
         <div class="row">
             <div class="col-md-9">
                 @RenderBody()
-                @*@{
-                    IgnoreBody();
-                        }*@
-                @*@await Component.InvokeAsync("Movie")*@
             </div>
-            @Html.Partial("_RightSection.cshtml");
+            @Html.Partial("_RightSection.cshtml")
         </div>
     </div>
 
-    <div class="footer">
-        FOOTER
-    </div>
+    @Html.Partial("_FooterSection.cshtml")
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

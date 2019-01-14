@@ -33,17 +33,20 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="daily">
-                        @foreach (var mv in context.TbMovie.ToList())
+                        @foreach (var mv in context.TbMovie.ToList().Take(4))
                         {
                             <div class="box">
                                 <div class="box-body box-profile">
-                                    <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self">
+                                        <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                    </a>
+                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
-                                    <h3 class="profile-username">@mv.MovieName</h3>
-
-                                    <p class="text-muted">
-                                        <i class="fas fa-tags"></i>@mv.ActorTag
-                                    </p>
+                                    <i class="fas fa-tags"></i>
+                                    @foreach (var tag in mv.MovieTag.Split(","))
+                                    {
+                                        <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>
+                                    }
                                 </div>
                                 <!-- /.box-body -->
                             </div>
@@ -51,17 +54,20 @@
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="weekly">
-                        @foreach (var mv in context.TbMovie.ToList())
+                        @foreach (var mv in context.TbMovie.ToList().Take(4))
                         {
                             <div class="box">
                                 <div class="box-body box-profile">
-                                    <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self">
+                                        <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                    </a>
+                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
-                                    <h3 class="profile-username">@mv.MovieName</h3>
-
-                                    <p class="text-muted">
-                                        <i class="fas fa-tags"></i>@mv.ActorTag
-                                    </p>
+                                    <i class="fas fa-tags"></i>
+                                    @foreach (var tag in mv.MovieTag.Split(","))
+                                    {
+                                        <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>
+                                    }
                                 </div>
                                 <!-- /.box-body -->
                             </div>
@@ -69,17 +75,20 @@
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="monthly">
-                        @foreach (var mv in context.TbMovie.ToList())
+                        @foreach (var mv in context.TbMovie.ToList().Take(4))
                         {
                             <div class="box">
                                 <div class="box-body box-profile">
-                                    <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self">
+                                        <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                    </a>
+                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
-                                    <h3 class="profile-username">@mv.MovieName</h3>
-
-                                    <p class="text-muted">
-                                        <i class="fas fa-tags"></i>@mv.ActorTag
-                                    </p>
+                                    <i class="fas fa-tags"></i>
+                                    @foreach (var tag in mv.MovieTag.Split(","))
+                                    {
+                                        <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>
+                                    }
                                 </div>
                                 <!-- /.box-body -->
                             </div>
@@ -94,13 +103,13 @@
     @* --- HOT TOPICS --- *@
     <div class="row hidden">
         <div class="col-md-12">
-            <div class="box">
+            <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">HOT TOPICS</h3>
                 </div>
-                <div class="box-body box-profile">
+                <div class="box-body">
                     <ul class="list-group list-group-unbordered">
-                        @foreach (var mv in context.TbMovie.ToList())
+                        @foreach (var mv in context.TbMovie.ToList().Take(4))
                         {
                             <li class="list-group-item">
                                 <b>@mv.MovieName</b> <a class="pull-right">@mv.ActorTag</a>
@@ -113,7 +122,7 @@
         </div>
     </div>
     @* --- RECENT COMMENTS --- *@
-    <div class="box hidden">
+    <div class="box box-primary hidden">
         <div class="box-header with-border">
             <h3 class="box-title">RECENT COMMENTS</h3>
         </div>
@@ -131,26 +140,28 @@
         <!-- /.box-body -->
     </div>
     @* --- CATEGORIES --- *@
-    <div class="box">
+    <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title">CATEGORIES</h3>
         </div>
         <div class="box-body box-profile">
             <ul class="list-group list-group-unbordered">
-                @foreach (var cat in context.TbCategoryMovie.ToList())
-                {
-                    <li class="list-group-item">
-                        @cat.CategoryName
-                    </li>
+                @{
+                    var listCategories = string.Join(",", context.TbMovie.Select(m => m.CategoryTag)).Split(",").Distinct().Take(9);
+                    foreach (var cat in listCategories)
+                    {
+                        <li class="list-group-item">
+                            <a href="@Url.Action("Category", "Home", new { category = cat })" target="_self">@cat</a>
+                        </li>
+                    }
                 }
-
             </ul>
         </div>
         <!-- /.box-body -->
     </div>
 </div>
 <script>
-    //$.ajax({
-    //    url: "Category"
-    //})
+        //$.ajax({
+        //    url: "Category"
+        //})
 </script>

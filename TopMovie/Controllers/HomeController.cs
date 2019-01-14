@@ -59,6 +59,13 @@ namespace TopMovie.Controllers
             return View("ListMovies", model);
         }
 
+        public IActionResult Studio(string studio)
+        {
+            CategoriesMoviesModel model = new CategoriesMoviesModel();
+            model.movies = context.TbMovie.Where(m => m.StudioTag.Contains(studio)).ToList();
+            return View("ListMovies", model);
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

@@ -1,0 +1,65 @@
+﻿@inject Movie.Services.Models.webphimContext context;
+@* --- RIGHT SECTION--- *@
+<footer class="footer">
+    <div class="footer-break-line"></div>
+    <div class="footer-content">
+        <div class="row">
+            <div class="col-md-3">
+                <h1>About:</h1>
+                <ul class="list-unstyled">
+                    <li><a href="#">What is Abc?</a></li>
+                    <li><a href="#">Abc Terms glossary</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">2257 Statement</a></li>
+                    <li><a href="#">DMCA</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h1>Abc Series:</h1>
+                <ul class="list-unstyled">
+                    @{
+                        var listSeries = string.Join(",", context.TbMovie.Select(m => m.StudioTag)).Split(",").Distinct().Take(9);
+                        foreach (var serie in listSeries)
+                        {
+                            <li><a href="@Url.Action("Studio", "Home", new { studio = serie })" target="_self"> <span>@serie</span> <span style="color: #028482;">(@context.TbMovie.Count(m => m.StudioTag.Contains(serie)))</span> </a></li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h1>Abc Actress:</h1>
+                <ul class="list-unstyled">
+                    @{
+                        var listActress = string.Join(",", context.TbMovie.Select(m => m.ActorTag)).Split(",").Distinct().Take(9);
+                        foreach (var actress in listActress)
+                        {
+                            <li><a href="@Url.Action("Actor", "Home", new { actor = actress })" target="_self"> <span>@actress</span> <span style="color: #028482;">(@context.TbMovie.Count(m => m.ActorTag.Contains(actress)))</span> </a></li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h1>Abc Category:</h1>
+                <ul class="list-unstyled">
+                    @{
+                        var listCategories = string.Join(",", context.TbMovie.Select(m => m.CategoryTag)).Split(",").Distinct().Take(9);
+                        foreach (var cat in listCategories)
+                        {
+                            <li><a href="#@Url.Action("Category", "Home", new { category = cat })" target="_self"> <span>@cat</span> <span style="color: #028482;">(@context.TbMovie.Count(m => m.CategoryTag.Contains(cat)))</span> </a></li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    //$.ajax({
+    //    url: "Category"
+    //})
+</script>

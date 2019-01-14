@@ -23,6 +23,7 @@ namespace TopMovie
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls("http://*:5001/")
                 .UseStartup<Startup>()
                 .Build();

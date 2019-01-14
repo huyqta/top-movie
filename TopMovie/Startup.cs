@@ -28,9 +28,10 @@ namespace TopMovie
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<webphimContext>();
+            services.AddDistributedMemoryCache();
             services.AddMvc();
             services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromSeconds(600);
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
             });
         }
@@ -49,8 +50,9 @@ namespace TopMovie
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseSession();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
