@@ -84,5 +84,13 @@ namespace TopMovie.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult ListTags(string type)
+        {
+            ListTagModel model = new ListTagModel();
+            model.TagType = type;
+            return View("ListTags", model);
+        }
     }
 }

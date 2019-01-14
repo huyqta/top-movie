@@ -59,24 +59,25 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8">
-                        <a class="logo-text" href="#">
+                        <a class="logo-text" href="/">
                             <span class="logo-color-1">AbcAz</span>
                             <span class="logo-color-2">.</span>
                             <span class="logo-color-1">Com</span>
                         </a>
                         <ul class="top-menu nav navbar-nav">
-                            <li><a class="menu-item" href="#">Link <span class="sr-only">(current)</span></a></li>
-                            <li><a class="menu-item" href="#">Link</a></li>
+                            <li><a class="menu-item" href="#">Eng Sub Abc <span class="sr-only">(current)</span></a></li>
+                            <li><a class="menu-item" href="#">Unsensor</a></li>
                             <li class="dropdown menu-item">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
+                                    <li><a href="@Url.Action("ListTags", "Home", new { type = "Category" })">Categories</a></li>
+                                    <li><a href="@Url.Action("ListTags", "Home", new { type = "Actress" })">Actresses</a></li>
+                                    <li><a href="@Url.Action("ListTags", "Home", new { type = "Studio" })">Studios</a></li>
+                                    <li><a href="@Url.Action("ListTags", "Home", new { type = "Tag" })">Tags</a></li>
+                                    @*<li class="divider"></li>
                                     <li><a href="#">Separated link</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">One more separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>*@
                                 </ul>
                             </li>
                         </ul>

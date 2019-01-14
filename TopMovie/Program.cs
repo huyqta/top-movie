@@ -7,7 +7,7 @@ namespace TopMovie
     public class Program
     {
         //static string[] Scopes = { DriveService.Scope.DriveReadonly };
-        static string ApplicationName = "Drive API .NET Quickstart";
+        //static string ApplicationName = "Drive API .NET Quickstart";
 
         public static void Main(string[] args)
         {
