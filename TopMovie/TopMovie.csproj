@@ -2182,6 +2182,7 @@
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\dependencyLibs\" />
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\global\" />
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\phone-codes\" />
+    <Folder Include="Views\Crawler\" />
   </ItemGroup>
 
   <ItemGroup>
