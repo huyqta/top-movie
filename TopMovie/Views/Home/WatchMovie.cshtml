@@ -4,12 +4,23 @@
 @{
     List<Movie.Services.Models.TbMovie> relatedMovies = new List<Movie.Services.Models.TbMovie>();
 }
-<h2 class="text-bold">@Model.MovieName</h2>
+@*<h2 class="text-bold">@Model.MovieName</h2>*@
 @*<img id="movie-box" class="movie-img img-responsive" src="@Model.ImageUrl" alt="@Model.MovieName">
         @Model.GoogleDrive
     <input type="button" class="btn btn-info" value="Play" onclick="PlayMovie()"  />
     <input type="button" class="btn btn-info" value="Rate" />*@
-@Html.Raw(@Model.GoogleDrive)
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <i class="fa fa-film"></i>
+        <h2 class="box-title">@Model.MovieName</h2>
+    </div>
+
+    <!-- /.box-header -->
+    <div class="box-body">
+        @Html.Raw(@Model.GoogleDrive)
+    </div>
+</div>
+
 <div class="box box-solid">
     <div class="box-header with-border">
         <i class="fa fa-text-width"></i>
@@ -49,27 +60,178 @@
             <dt>Actress: </dt>
             <dd>
                 @foreach (var actor in Model.ActorTag.Split(","))
-    {
-            <a href="@Url.Action("Actor", "Home", new { actor = actor })" target="_self">@actor</a>
-if (context.TbMovie.Any(m => m.ActorTag.IndexOf(actor) > -1))
-{
-    relatedMovies.Add(context.TbMovie.FirstOrDefault(m => m.ActorTag.Contains(actor)));
-}
-}
+                {
+                    <a href="@Url.Action("Actor", "Home", new { actor = actor })" target="_self">@actor</a>
+                    if (context.TbMovie.Any(m => m.ActorTag.IndexOf(actor) > -1))
+                    {
+                        relatedMovies.Add(context.TbMovie.FirstOrDefault(m => m.ActorTag.Contains(actor)));
+                    }
+                }
             </dd>
         </dl>
     </div>
-    <!-- /.box-body -->
-    <h3>RELATED VIDEOS</h3>
-    @{
-        relatedMovies.Distinct().Take(12);
-        <div class="row">
-            @foreach (var movie in relatedMovies){
-            <div class="col-md-2">
-                <img id="movie-box" class="movie-img img-responsive" src="@movie.ImageUrl" alt="@movie.MovieName">
-                <h5>@movie.MovieName</h5>
-            </div>
-            }
-        </div>
-    }
 </div>
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <i class="fa fa-reply"></i>
+        <h3 class="box-title">Leave a reply:</h3>
+    </div>
+
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="box-body">
+            <form id="form-comment" enctype="multipart/form-data">
+                <div class="form-group">
+                    <i class="fa fa-comments"></i>
+                    Comments:
+                    <span class="label label-primary">2</span>
+                </div>
+
+                <!-- textarea -->
+                <div class="form-group">
+                    <textarea class="form-control" name="comment" rows="3" placeholder="Join the discussion ..."></textarea>
+                </div>
+                <!-- text input -->
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" name="name" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input type="email" class="form-control" name="email" placeholder="Email">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-block btn-primary">Post Comment</button>
+            </form>
+        </div>
+        <hr class="cm-hr" />
+        @*<div class="text-left infor-comment">
+            <span data-toggle="tooltip" title="Comment threads">
+                <i class="fa fa-align-left fa-rotate-180 fa-lg" data-fa-transform="rotate-180"></i> 1
+            </span>
+            <span data-toggle="tooltip" title="Thread replies">
+                <i class="fa fa-comments fa-lg" data-fa-transform="rotate-180"></i> 1
+            </span>
+        </div>*@
+        @*<div class="box box-success">*@
+            <div class="box-header ui-sortable-handle" style="cursor: move;">
+                <div class="pull-left infor-comment">
+                    <span data-toggle="tooltip" title="Comment threads">
+                        <i class="fa fa-align-left fa-rotate-180 fa-lg" data-fa-transform="rotate-180"></i> 1
+                    </span>
+                    <span data-toggle="tooltip" title="Thread replies">
+                        <i class="fa fa-comments fa-lg" data-fa-transform="rotate-180"></i> 1
+                    </span>
+                </div>
+
+                @*<div class="box-tools pull-right" data-toggle="tooltip" title="" data-original-title="Status">
+                    <div class="btn-group" data-toggle="btn-toggle">
+                        <button type="button" class="btn btn-default btn-sm active">
+                            <i class="fa fa-square text-green"></i>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+                    </div>
+                </div>*@
+            </div>
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;">
+                <div class="box-body chat" id="chat-box" style="overflow: hidden; width: auto; height: 250px;">
+                    <!-- chat item -->
+                    <div class="item">
+                        <p class="message">
+                            <a href="#" class="name">
+                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+                                Mike Doe
+                            </a>
+                            I would like to meet you to discuss the latest news about
+                            the arrival of the new theme. They say it is going to be one the
+                            best themes on the market
+                        </p>
+                        <div class="attachment">
+                            <p class="message">
+                                <a href="#" class="name">
+                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+                                    Mike Doe
+                                </a>
+                                I would like to meet you to discuss the latest news about
+                                the arrival of the new theme. They say it is going to be one the
+                                best themes on the market
+                            </p>
+                        </div>
+                        <!-- /.attachment -->
+                    </div>
+                    <!-- /.item -->
+                    <!-- chat item -->
+                    <div class="item">
+                        <p class="message">
+                            <a href="#" class="name">
+                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
+                                Alexander Pierce
+                            </a>
+                            I would like to meet you to discuss the latest news about
+                            the arrival of the new theme. They say it is going to be one the
+                            best themes on the market
+                        </p>
+                    </div>
+                    <!-- /.item -->
+                    <!-- chat item -->
+                    <div class="item">
+                        <p class="message">
+                            <a href="#" class="name">
+                                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
+                                Susan Doe
+                            </a>
+                            I would like to meet you to discuss the latest news about
+                            the arrival of the new theme. They say it is going to be one the
+                            best themes on the market
+                        </p>
+                    </div>
+                    <!-- /.item -->
+                </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 224.82px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </div>
+            <!-- /.chat -->
+            
+        @*</div>*@
+    </div>
+</div>
+
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <i class="fa fa-link"></i>
+        <h3 class="box-title">Related videos:</h3>
+    </div>
+
+    <!-- /.box-header -->
+    <div class="box-body">
+        @{
+            relatedMovies.Distinct().Take(12);
+            <div class="row">
+                @foreach (var movie in relatedMovies)
+                {
+                    <div class="col-md-2">
+                        <img id="movie-box" class="movie-img img-responsive" src="@movie.ImageUrl" alt="@movie.MovieName">
+                        <h5>@movie.MovieName</h5>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#form-comment").submit(function (e) {
+            //e.preventDefault();
+            var comment = new Object();
+            comment.comment =
+                console.log('Doing ajax submit');
+            $.ajax({
+                type: "POST",
+                url: "Home/PostComment",
+
+            })
+        })
+    });
+</script>

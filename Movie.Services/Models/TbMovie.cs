@@ -19,7 +19,7 @@ namespace Movie.Services.Models
         public string CategoryTag { get; set; }
         public string ActorTag { get; set; }
         public string MovieTag { get; set; }
-        public string StudioTag { get ; set; }
+        public string StudioTag { get; set; }
         public string Description { get; set; }
 
         public virtual TbCategoryMovie Category { get; set; }

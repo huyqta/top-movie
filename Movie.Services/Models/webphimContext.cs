@@ -18,6 +18,7 @@ namespace Movie.Services.Models
         public virtual DbSet<TbAccount> TbAccount { get; set; }
         public virtual DbSet<TbActor> TbActor { get; set; }
         public virtual DbSet<TbCategoryMovie> TbCategoryMovie { get; set; }
+        public virtual DbSet<TbComment> TbComment { get; set; }
         public virtual DbSet<TbMovie> TbMovie { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -107,6 +108,45 @@ namespace Movie.Services.Models
                     .HasColumnType("int(11)");
             });
 
+            modelBuilder.Entity<TbComment>(entity =>
+            {
+                entity.ToTable("tb_comment", "webphim");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Comment)
+                    .IsRequired()
+                    .HasColumnName("comment")
+                    .HasMaxLength(4000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Email)
+                    .HasColumnName("email")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MovieId)
+                    .HasColumnName("movie_id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PostedDatetime).HasColumnName("posted_datetime");
+
+                entity.Property(e => e.ReplyCommentId)
+                    .HasColumnName("reply_comment_id")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<TbMovie>(entity =>
             {
                 entity.ToTable("tb_movie", "webphim");
@@ -121,7 +161,8 @@ namespace Movie.Services.Models
                 entity.Property(e => e.ActorTag)
                     .HasColumnName("actor_tag")
                     .HasMaxLength(1000)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("\"\"");
 
                 entity.Property(e => e.CategoryId)
                     .HasColumnName("category_id")
@@ -166,7 +207,8 @@ namespace Movie.Services.Models
                 entity.Property(e => e.MovieTag)
                     .HasColumnName("movie_tag")
                     .HasMaxLength(1000)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("\"\"");
 
                 entity.Property(e => e.MovieType)
                     .HasColumnName("movie_type")
@@ -183,7 +225,8 @@ namespace Movie.Services.Models
                 entity.Property(e => e.StudioTag)
                     .HasColumnName("studio_tag")
                     .HasMaxLength(1000)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("\"\"");
 
                 entity.Property(e => e.Trailer)
                     .HasColumnName("trailer")
