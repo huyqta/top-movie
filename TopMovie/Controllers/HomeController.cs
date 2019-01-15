@@ -9,6 +9,7 @@ using Movie.Services.Models;
 using TopMovie.Helpers;
 using TopMovie.Models;
 using Google.Apis.Drive.v3;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace TopMovie.Controllers
 {
@@ -91,6 +92,25 @@ namespace TopMovie.Controllers
             ListTagModel model = new ListTagModel();
             model.TagType = type;
             return View("ListTags", model);
+        }
+
+        [HttpPost]
+        public int PostComment([FromBody] TbComment comment)
+        {
+            comment.Id = Guid.NewGuid().ToString();
+            comment.PostedDatetime = DateTime.Now;
+            context.TbComment.Add(comment);
+            return context.SaveChanges();
+        }
+
+        public PartialViewResult GetComment(int movieId)
+        {
+            var listComment = context.TbComment.Where(c => c.MovieId == movieId).ToList();
+            return new PartialViewResult
+            {
+                ViewName = "_PartialCommentBox",
+                ViewData = new ViewDataDictionary<List<TbComment>>(ViewData, listComment)
+            };
         }
     }
 }

@@ -1,4 +1,4 @@
-/*--------logo color*/
+﻿/*--------logo color*/
 /*--------header menu background*/
 /*--------body background*/
 /*--------logo color*/
@@ -14,7 +14,7 @@
 /* Set font size of site to 13px */
 body {
   /*margin: 0 -15px;*/
-  background: url("../../../img/weather.png") repeat; }
+  /*background: url('../../../img/weather.png') repeat;*/ }
 
 /*--------logo color*/
 /*--------header menu background*/

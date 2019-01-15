@@ -1,0 +1,39 @@
+﻿@model List<Movie.Services.Models.TbComment>;
+
+<div class="box box-primary direct-chat direct-chat-primary">
+    <div class="box-header with-border">
+        <i class="fa fa-comments fa-lg"></i>
+        <h3 class="box-title">Comments</h3>
+        <div class="box-tools pull-right">
+            <span data-toggle="tooltip" title="Comments" class="badge bg-primary">@Model.Count</span>
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <!-- In box-tools add this button if you intend to use the contacts pane -->
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <!-- Conversations are loaded here -->
+        <div class="direct-chat-messages">
+            @foreach (var msg in Model.OrderByDescending(m=>m.PostedDatetime))
+            {
+                <div class="direct-chat-msg">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">@msg.Name</span>
+                        <span class="direct-chat-timestamp pull-right">@msg.PostedDatetime.ToString("dd MMM h:mm tt")</span>
+                    </div>
+                    <!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" src="~/dist/img/avatar.png" alt="message user image">
+                    <!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                        @msg.Comment
+                    </div>
+                    <!-- /.direct-chat-text -->
+                </div>
+            }
+            <!-- /.direct-chat-msg -->
+        </div>
+        <!--/.direct-chat-messages-->
+        <!-- /.direct-chat-pane -->
+    </div>
+    <!-- /.box-footer-->
+</div>
