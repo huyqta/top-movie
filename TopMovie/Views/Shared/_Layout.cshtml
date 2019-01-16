@@ -84,9 +84,9 @@
 
                     </div>
                     <div class="col-md-4">
-                        <form action="#" method="get" id="search-box">
+                        <form asp-action="Search" asp-controller="Home" method="get" id="search-box">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control search-textbox">
+                                <input type="text" class="form-control search-textbox" name="query">
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-flat"><i class="fa fa-search"></i></button>
                                 </span>

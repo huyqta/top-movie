@@ -14,6 +14,10 @@
     <!-- /.box-header -->
     <div class="box-body">
         @Html.Raw(@Model.GoogleDrive)
+        <div id="player-tool-left">
+            <a id="button_thumbs-up"><i class="fa fa-thumbs-up"></i><span> Like it </span></a>
+            <a id="button_thumbs-down"><i class="fa fa-thumbs-down"></i><span> Dislike </span></a>
+        </div>
     </div>
 </div>
 
@@ -78,15 +82,15 @@
         <div class="box-body">
             <div id="form-comment">
                 @*<div class="form-group">
-                    <i class="fa fa-comments"></i>
-                    Comments:
-                    <span class="label label-primary">2</span>
-                </div>*@
+                        <i class="fa fa-comments"></i>
+                        Comments:
+                        <span class="label label-primary">2</span>
+                    </div>*@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- textarea -->
                         <div class="form-group">
-                            <textarea id="comment" class="form-control" name="comment" rows="3" placeholder="Join the discussion ...">123</textarea>
+                            <textarea id="comment" class="form-control" name="comment" rows="3" placeholder="Join the discussion ..."></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -94,7 +98,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input id="name" type="text" class="form-control" name="name" placeholder="Name" value="333" />
+                                <input id="name" type="text" class="form-control" name="name" placeholder="Name" />
                             </div>
                         </div>
                     </div>
@@ -102,7 +106,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input id="email" type="email" class="form-control" name="email" placeholder="Email" value="123@123.123" />
+                                <input id="email" type="email" class="form-control" name="email" placeholder="Email" />
                             </div>
                         </div>
                     </div>
@@ -169,6 +173,38 @@
                     $("#comment").val('');
                     $("#email").val('');
                     $("#name").val('');
+                },
+            })
+        });
+        $("#button_thumbs-up").click(function () {
+             //e.preventDefault();
+            var url = "/Home/ThumbUp";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: JSON.stringify(comment),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#comment-box").load("@Url.Action("GetComment", "Home")", { movieId:@Model.Id });
+                    
+                },
+            })
+        });
+        $("#button_thumbs-down").click(function () {
+             //e.preventDefault();
+            var url = "/Home/ThumbUp";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: JSON.stringify(comment),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#comment-box").load("@Url.Action("GetComment", "Home")", { movieId:@Model.Id });
+                    
                 },
             })
         });

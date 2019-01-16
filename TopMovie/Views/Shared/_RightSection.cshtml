@@ -41,7 +41,7 @@
                                     </a>
                                     <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
-                                    <i class="fas fa-tags"></i>
+                                    <i class="fa fa-tags"></i>
                                     @foreach (var tag in mv.MovieTag.Split(","))
                                     {
                                         <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>
@@ -62,7 +62,7 @@
                                     </a>
                                     <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
-                                    <i class="fas fa-tags"></i>
+                                    <i class="fa fa-tags"></i>
                                     @foreach (var tag in mv.MovieTag.Split(","))
                                     {
                                         <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>
@@ -83,7 +83,7 @@
                                     </a>
                                     <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
-                                    <i class="fas fa-tags"></i>
+                                    <i class="fa fa-tags"></i>
                                     @foreach (var tag in mv.MovieTag.Split(","))
                                     {
                                         <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>

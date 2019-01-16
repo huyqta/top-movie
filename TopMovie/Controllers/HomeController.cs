@@ -115,9 +115,10 @@ namespace TopMovie.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(int page, string input)
+        public IActionResult Search(int page, string query)
         {
-            var result = context.TbMovie.Where(m => m.MovieName.Contains(input));
+            var result = context.TbMovie.Where(m => m.MovieName.Contains(query));
+            if (page == 0) page = 1;
             var model = result.GetPaged<TbMovie>(page, 21);
             return View(model);
         }
