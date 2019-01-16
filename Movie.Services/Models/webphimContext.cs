@@ -19,6 +19,7 @@ namespace Movie.Services.Models
         public virtual DbSet<TbActor> TbActor { get; set; }
         public virtual DbSet<TbCategoryMovie> TbCategoryMovie { get; set; }
         public virtual DbSet<TbComment> TbComment { get; set; }
+        public virtual DbSet<TbCrawl> TbCrawl { get; set; }
         public virtual DbSet<TbMovie> TbMovie { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,7 +27,7 @@ namespace Movie.Services.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySQL("Server=128.199.183.242;User Id=huyqta;Password=huyqta;Database=webphim");
+                optionsBuilder.UseMySQL("Server=128.199.183.242;User Id=huyqta;Password=huyqta;Database=webphim_backup");
             }
         }
 
@@ -36,7 +37,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbAccount>(entity =>
             {
-                entity.ToTable("tb_account", "webphim");
+                entity.ToTable("tb_account", "webphim_backup");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -66,7 +67,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbActor>(entity =>
             {
-                entity.ToTable("tb_actor", "webphim");
+                entity.ToTable("tb_actor", "webphim_backup");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -92,7 +93,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbCategoryMovie>(entity =>
             {
-                entity.ToTable("tb_category_movie", "webphim");
+                entity.ToTable("tb_category_movie", "webphim_backup");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -110,7 +111,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbComment>(entity =>
             {
-                entity.ToTable("tb_comment", "webphim");
+                entity.ToTable("tb_comment", "webphim_backup");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -128,6 +129,11 @@ namespace Movie.Services.Models
                     .HasColumnName("email")
                     .HasMaxLength(500)
                     .IsUnicode(false);
+
+                entity.Property(e => e.IsValidated)
+                    .HasColumnName("is_validated")
+                    .HasColumnType("tinyint(1)")
+                    .HasDefaultValueSql("0");
 
                 entity.Property(e => e.MovieId)
                     .HasColumnName("movie_id")
@@ -147,9 +153,38 @@ namespace Movie.Services.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<TbCrawl>(entity =>
+            {
+                entity.ToTable("tb_crawl", "webphim_backup");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CrawlUrl)
+                    .HasColumnName("crawl_url")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IsSuccess)
+                    .HasColumnName("is_success")
+                    .HasColumnType("int(1)")
+                    .HasDefaultValueSql("0");
+
+                entity.Property(e => e.SiteName)
+                    .HasColumnName("site_name")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SiteUrl)
+                    .HasColumnName("site_url")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<TbMovie>(entity =>
             {
-                entity.ToTable("tb_movie", "webphim");
+                entity.ToTable("tb_movie", "webphim_backup");
 
                 entity.HasIndex(e => e.CategoryId)
                     .HasName("category_id_2");
@@ -171,7 +206,18 @@ namespace Movie.Services.Models
                 entity.Property(e => e.CategoryTag)
                     .HasColumnName("category_tag")
                     .HasMaxLength(1000)
-                    .IsUnicode(false);
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("\"\"");
+
+                entity.Property(e => e.CountLike)
+                    .HasColumnName("count_like")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("95");
+
+                entity.Property(e => e.CountView)
+                    .HasColumnName("count_view")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("97");
 
                 entity.Property(e => e.Country)
                     .HasColumnName("country")
@@ -180,17 +226,17 @@ namespace Movie.Services.Models
 
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
-                    .HasMaxLength(2000)
+                    .HasMaxLength(4000)
                     .IsUnicode(false);
 
                 entity.Property(e => e.GoogleDrive)
                     .HasColumnName("google_drive")
-                    .HasMaxLength(500)
+                    .HasMaxLength(2000)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ImageUrl)
                     .HasColumnName("image_url")
-                    .HasMaxLength(500)
+                    .HasMaxLength(2000)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ImdbId)
@@ -201,7 +247,7 @@ namespace Movie.Services.Models
                 entity.Property(e => e.MovieName)
                     .IsRequired()
                     .HasColumnName("movie_name")
-                    .HasMaxLength(500)
+                    .HasMaxLength(2000)
                     .IsUnicode(false);
 
                 entity.Property(e => e.MovieTag)
@@ -217,7 +263,7 @@ namespace Movie.Services.Models
 
                 entity.Property(e => e.PosterUrl)
                     .HasColumnName("poster_url")
-                    .HasMaxLength(500)
+                    .HasMaxLength(2000)
                     .IsUnicode(false);
 
                 entity.Property(e => e.ReleaseDate).HasColumnName("release_date");
@@ -230,7 +276,7 @@ namespace Movie.Services.Models
 
                 entity.Property(e => e.Trailer)
                     .HasColumnName("trailer")
-                    .HasMaxLength(500)
+                    .HasMaxLength(2000)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.Category)

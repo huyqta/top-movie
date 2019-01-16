@@ -12,5 +12,6 @@ namespace Movie.Services.Models
         public int MovieId { get; set; }
         public string ReplyCommentId { get; set; }
         public DateTime PostedDatetime { get; set; }
+        public byte IsValidated { get; set; }
     }
 }

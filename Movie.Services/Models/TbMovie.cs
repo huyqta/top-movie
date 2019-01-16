@@ -21,6 +21,8 @@ namespace Movie.Services.Models
         public string MovieTag { get; set; }
         public string StudioTag { get; set; }
         public string Description { get; set; }
+        public int CountView { get; set; }
+        public int CountLike { get; set; }
 
         public virtual TbCategoryMovie Category { get; set; }
     }
