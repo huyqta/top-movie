@@ -1,18 +1,25 @@
-﻿@model CategoriesMoviesModel;
-<div class="row render-ajax">
-        @foreach (var mv in Model.movies)
-        {
-            <div class="col-md-4">
-                <div class="box">
-                    <div class="box-body box-profile">
+﻿@*@model CategoriesMoviesModel;*@
+@using Movie.Services.Models;
+@using TopMovie.ViewComponents;
+@model PagedResult<Movie.Services.Models.TbMovie>
+@*<div class="row render-ajax">
+    @foreach (var mv in Model.movies)
+    {
+        <div class="col-md-4">
+            <div class="info-box">
+                <div class="box-body box-profile">
+                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self">
                         <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
-                        <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target = "_self"><h3 class="profile-username text-bold">@mv.MovieName</h3>TTT</a>
-
-                        <p class="text-muted">
-                            <i class="fas fa-tags"></i>@mv.ActorTag
-                        </p>
-                    </div>
+                    </a>
+                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self">
+                        <h5 class="text-bold">@mv.MovieName</h5>
+                    </a>
+                    <p class="text-muted">
+                        <i class="fa fa-tags"></i>@mv.ActorTag
+                    </p>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
+</div>*@
+@(await Component.InvokeAsync<PagerViewComponent>(Model))

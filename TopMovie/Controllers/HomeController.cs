@@ -17,19 +17,20 @@ namespace TopMovie.Controllers
     {
         webphimContext context = new webphimContext();
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            var service = new GoogleDriveHelpers().InitGoogleDriveService();
-            //here is your request file id taken from https://drive.google.com/file/d/0B6zj9fZgMGr7dXl3Z3VxSGRadU0/view
-            FilesResource.GetRequest getRequest = service.Files.Get("1-e5zPzVpwGS-W7Cpnl3ngSEkwMUVmzPY");
-            getRequest.Fields = "webViewLink";
-            Google.Apis.Drive.v3.Data.File file = getRequest.Execute();
-            //here is the video link you wanted
-            string sourceURL = file.WebViewLink;
-            //ViewBag["URL"] = sourceURL;
-            CategoriesMoviesModel model = new CategoriesMoviesModel();
-            model.movies = context.TbMovie.ToList();
-            model.categories = context.TbCategoryMovie.ToList();
+            //var service = new GoogleDriveHelpers().InitGoogleDriveService();
+            ////here is your request file id taken from https://drive.google.com/file/d/0B6zj9fZgMGr7dXl3Z3VxSGRadU0/view
+            //FilesResource.GetRequest getRequest = service.Files.Get("1-e5zPzVpwGS-W7Cpnl3ngSEkwMUVmzPY");
+            //getRequest.Fields = "webViewLink";
+            //Google.Apis.Drive.v3.Data.File file = getRequest.Execute();
+            ////here is the video link you wanted
+            //string sourceURL = file.WebViewLink;
+            ////ViewBag["URL"] = sourceURL;
+
+            //CategoriesMoviesModel model = new CategoriesMoviesModel();
+            var model = context.TbMovie.GetPaged<TbMovie>(page, 21);
+            //model.categories = context.TbCategoryMovie.ToList();
             return View(model);
         }
 
@@ -111,6 +112,14 @@ namespace TopMovie.Controllers
                 ViewName = "_PartialCommentBox",
                 ViewData = new ViewDataDictionary<List<TbComment>>(ViewData, listComment)
             };
+        }
+
+        [HttpGet]
+        public IActionResult Search(int page, string input)
+        {
+            var result = context.TbMovie.Where(m => m.MovieName.Contains(input));
+            var model = result.GetPaged<TbMovie>(page, 21);
+            return View(model);
         }
     }
 }

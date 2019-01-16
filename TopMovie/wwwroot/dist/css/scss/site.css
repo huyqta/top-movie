@@ -1,4 +1,4 @@
-/*--------logo color*/
+﻿/*--------logo color*/
 /*--------header menu background*/
 /*--------body background*/
 /*--------logo color*/
@@ -102,3 +102,11 @@ body {
   width: 100%;
   height: 150px;
   padding: 3px; }
+
+.movie-title {
+  display: block;
+  margin-top: .25rem;
+  height: 4.2rem;
+  font-size: .9rem;
+  line-height: 1.1rem;
+  overflow: hidden; }
