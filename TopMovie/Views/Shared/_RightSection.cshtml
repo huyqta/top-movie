@@ -36,15 +36,15 @@
                         {
                             <div class="box">
                                 <div class="box-body box-profile">
-                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self">
+                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
                                         <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
                                     </a>
-                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
+                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
                                     <i class="fa fa-tags"></i>
                                     @foreach (var tag in mv.MovieTag.Split(","))
                                     {
-                                        <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>
+                                        <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
                                     }
                                 </div>
                                 <!-- /.box-body -->
@@ -57,15 +57,15 @@
                         {
                             <div class="box">
                                 <div class="box-body box-profile">
-                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self">
+                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
                                         <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
                                     </a>
-                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
+                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
                                     <i class="fa fa-tags"></i>
                                     @foreach (var tag in mv.MovieTag.Split(","))
                                     {
-                                        <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>
+                                        <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
                                     }
                                 </div>
                                 <!-- /.box-body -->
@@ -78,15 +78,15 @@
                         {
                             <div class="box">
                                 <div class="box-body box-profile">
-                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self">
+                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
                                         <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
                                     </a>
-                                    <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
+                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
 
                                     <i class="fa fa-tags"></i>
                                     @foreach (var tag in mv.MovieTag.Split(","))
                                     {
-                                        <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>
+                                        <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
                                     }
                                 </div>
                                 <!-- /.box-body -->
@@ -150,7 +150,7 @@
                     foreach (var cat in listCategories)
                     {
                         <li class="list-group-item">
-                            <a href="@Url.Action("Category", "Home", new { category = cat })" target="_self">@cat</a>
+                            <a href="@Url.Content("category/" + cat)" target="_self">@cat</a>
                         </li>
                     }
                 }

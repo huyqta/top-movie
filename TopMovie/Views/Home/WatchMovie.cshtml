@@ -5,6 +5,8 @@
     List<Movie.Services.Models.TbMovie> relatedMovies = new List<Movie.Services.Models.TbMovie>();
 }
 
+<p><span>URL : </span>@TopMovie.Helpers.FriendlyUrlHelper.GetFriendlyTitle(Model.MovieName, true, 120)</p>
+
 <div class="box box-solid">
     <div class="box-header with-border">
         <i class="fa fa-film"></i>

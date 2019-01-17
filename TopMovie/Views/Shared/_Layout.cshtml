@@ -70,10 +70,10 @@
                             <li class="dropdown menu-item">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="@Url.Action("ListTags", "Home", new { type = "Category" })">Categories</a></li>
-                                    <li><a href="@Url.Action("ListTags", "Home", new { type = "Actress" })">Actresses</a></li>
-                                    <li><a href="@Url.Action("ListTags", "Home", new { type = "Studio" })">Studios</a></li>
-                                    <li><a href="@Url.Action("ListTags", "Home", new { type = "Tag" })">Tags</a></li>
+                                    <li><a href="@Url.Content("categories")">Categories</a></li>
+                                    <li><a href="@Url.Content("actresses")">Actresses</a></li>
+                                    <li><a href="@Url.Content("studio")">Studios</a></li>
+                                    <li><a href="@Url.Content("tags")">Tags</a></li>
                                     @*<li class="divider"></li>
                                     <li><a href="#">Separated link</a></li>
                                     <li class="divider"></li>

@@ -12,11 +12,11 @@ namespace HCrawler
         {
             try
             {
-                PhimMoi me = new PhimMoi();
-                for (int j = 1; j < 100; j++)
+                JavforMe me = new JavforMe();
+                for (int j = 1393; j < 2379; j++)
                 {
-                    //me.SiteUrl = "https://javfor.me";
-                    me.SiteUrl = "http://www.phimmoi.net";
+                    me.SiteUrl = "https://javfor.me";
+                    //me.SiteUrl = "http://www.phimmoi.net";
                     me.CrawlPage(j);
                 }
                     

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -25,7 +26,8 @@ namespace TopMovie
             services.AddDbContext<webphimContext>();
             services.AddDistributedMemoryCache();
             services.AddMvc();
-            services.AddSession(options => {
+            services.AddSession(options =>
+            {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
             });
@@ -34,7 +36,11 @@ namespace TopMovie
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
+            //var rewrite = new RewriteOptions()
+            //    .AddRewrite(@"movie/(\d+)", "Home/WatchMovie/:id", true);
+
+            //app.UseRewriter(rewrite);
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -50,9 +56,24 @@ namespace TopMovie
             app.UseSession();
             app.UseMvc(routes =>
             {
+                var rewrite = new RewriteOptions()
+                .AddRewrite(@"movie/(\d+)", "Home/WatchMovie?id=$1", skipRemainingRules: false)
+                .AddRewrite(@"contact", "Home/Contact", skipRemainingRules: false)
+                .AddRewrite(@"categories", "Home/ListTags?type=Category", skipRemainingRules: false)
+                .AddRewrite(@"actresses", "Home/ListTags?type=Actress", skipRemainingRules: false)
+                .AddRewrite(@"studios", "Home/ListTags?type=Studio", skipRemainingRules: false)
+                .AddRewrite(@"tags", "Home/ListTags?type=Tag", skipRemainingRules: false)
+                .AddRewrite(@"tag/(.*)", "Home/Tag?tag=$1", skipRemainingRules: false)
+                .AddRewrite(@"category/(.*)", "Home/Category?category=$1", skipRemainingRules: false)
+                .AddRewrite(@"actress/(.*)", "Home/Actor?actor=$1", skipRemainingRules: false);
+
+
+                app.UseRewriter(rewrite);
+                
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
             });
         }
     }

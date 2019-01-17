@@ -191,7 +191,6 @@
     <Content Remove="wwwroot\dist\bootstrap-datepicker\.travis.yml" />
     <Content Remove="wwwroot\dist\bootstrap-datepicker\bower.json" />
     <Content Remove="wwwroot\dist\bootstrap-datepicker\build\build.less" />
-    <Content Remove="Views\Home\Components\Pager\Default.cshtml" />
     <Content Remove="wwwroot\dist\bootstrap-datepicker\.travis.yml" />
     <Content Remove="wwwroot\dist\bootstrap-datepicker\bower.json" />
     <Content Remove="wwwroot\dist\bootstrap-datepicker\build\build.less" />
@@ -2230,6 +2229,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Home\Components\Pager\Default.cshtml" />
     <None Include="wwwroot\bower_components\bootstrap-colorpicker\.editorconfig" />
     <None Include="wwwroot\bower_components\bootstrap-colorpicker\.github\CODE_OF_CONDUCT.md" />
     <None Include="wwwroot\bower_components\bootstrap-colorpicker\.github\CONTRIBUTING.md" />

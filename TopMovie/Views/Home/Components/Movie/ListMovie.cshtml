@@ -9,9 +9,8 @@
             <div class="box">
                 <div class="box-body box-profile">
                     <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
-                    @Html.ActionLink("WatchMovie/6", "WatchMovie", new { id = 6 })
 
-                    <a href="@Url.Action("WatchMovie/6")"><h3 class="profile-username text-bold">@mv.MovieName</h3></a>
+                    <a href="@Url.Action("movie/" + @mv.Id)"><h3 class="profile-username text-bold">@mv.MovieName</h3></a>
 
                     <p class="text-muted">
                         <i class="fas fa-tags"></i>@mv.ActorTag

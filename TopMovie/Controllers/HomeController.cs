@@ -38,6 +38,7 @@ namespace TopMovie.Controllers
         {
             var movie = context.TbMovie.FirstOrDefault(m => m.Id == id);
             return View(movie);
+
         }
 
         public IActionResult Actor(string actor)
