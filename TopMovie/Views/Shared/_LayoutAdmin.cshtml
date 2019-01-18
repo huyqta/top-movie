@@ -8,22 +8,22 @@
     <title>@ViewData["Title"] - TopMovie</title>
 
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="~/dist/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- DataTables -->
-    <link rel="stylesheet" href="~/dist/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap.min.css" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/dist/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <!-- Ionicons -->
-    <link rel="stylesheet" href="~/dist/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.4.8/css/ionicons.min.css" />
     <!-- Theme style -->
-    <link rel="stylesheet" href="~/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/css/AdminLTE.min.css" />
     <link rel="stylesheet" href="~/dist/css/skins/skin-blue.min.css">
     <!-- iCheck -->
     @*<link rel="stylesheet" href="~/bower_components/admin-lte/plugins/iCheck/square/blue.css">*@
     <!-- Select 2 -->
     <link rel="stylesheet" href="~/dist/select2/dist/css/select2.min.css" />
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="~/dist/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,13 +37,14 @@
 
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- jQuery 3 -->
-    <script src="~/dist/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @*<script src="~/bowers/Microsoft.jQuery.Unobtrusive.Ajax/jquery.unobtrusive-ajax.min.js"></script>*@
     <!-- Bootstrap 3.3.7 -->
-    <script src="~/dist/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- iCheck -->
     @*<script src="~/bower_components/admin-lte/plugins/iCheck/icheck.min.js"></script>*@
     <!-- AdminLTE App -->
-    <script src="~/dist/js/adminlte.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/js/adminlte.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
     @{
         var username = HttpContextAccessor.HttpContext.Session.GetString("username");

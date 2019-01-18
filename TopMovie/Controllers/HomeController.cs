@@ -10,12 +10,19 @@ using TopMovie.Helpers;
 using TopMovie.Models;
 using Google.Apis.Drive.v3;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace TopMovie.Controllers
 {
     public class HomeController : Controller
     {
         webphimContext context = new webphimContext();
+        private IMemoryCache _cache;
+
+        public HomeController(IMemoryCache memoryCache)
+        {
+            _cache = memoryCache;
+        }
 
         public IActionResult Index(int page = 1)
         {
@@ -88,13 +95,13 @@ namespace TopMovie.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpGet]
-        public IActionResult ListTags(string type)
-        {
-            ListTagModel model = new ListTagModel();
-            model.TagType = type;
-            return View("ListTags", model);
-        }
+        //[HttpGet]
+        //public IActionResult ListTags(string type)
+        //{
+        //    ListTagModel model = new ListTagModel();
+        //    model.TagType = type;
+        //    return View("ListTags", model);
+        //}
 
         [HttpPost]
         public int PostComment([FromBody] TbComment comment)
@@ -122,6 +129,69 @@ namespace TopMovie.Controllers
             if (page == 0) page = 1;
             var model = result.GetPaged<TbMovie>(page, 21);
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult ListTags(string type)
+        {
+            ListTagModel model = new ListTagModel();
+            model = GetListTagModel(type);
+            return View("ListTags", model);
+        }
+
+        private ListTagModel GetListTagModel(string TagType)
+        {
+            ListTagModel ltm = new ListTagModel();
+            if (ltm.ListTags == null) ltm.ListTags = new List<TagModel>();
+            switch (TagType)
+            {
+                case "Tag":
+                    var allMovieTags = string.Join(",", context.TbMovie.Select(m => m.MovieTag)).Split(",").Distinct();
+                    ltm.ListTags = _cache.GetOrCreate<List<TagModel>>(CacheKeys.ListMovieTags,
+                        cacheEntry =>
+                        {
+                            allMovieTags.Distinct().Select(a => new TagModel() { name = a, quantity = allMovieTags.Count(m => m.Contains(a)) }).ToList();
+                            return ltm.ListTags.OrderByDescending(t => t.quantity).ToList();
+                        });
+                    ltm.Action = "Tag";
+                    ltm.PageTitle = "List of Tags";
+                    break;
+                case "Category":
+                    var allCategoryTags = string.Join(",", context.TbMovie.Select(m => m.CategoryTag)).Split(",").Distinct();
+                    ltm.ListTags = _cache.GetOrCreate<List<TagModel>>(CacheKeys.ListCategoryTags,
+                        cacheEntry =>
+                        {
+                            allCategoryTags.Distinct().Select(a => new TagModel() { name = a, quantity = allCategoryTags.Count(m => m.Contains(a)) }).ToList();
+                            return ltm.ListTags.OrderByDescending(t => t.quantity).ToList();
+                        });
+                    ltm.Action = "Category";
+                    ltm.PageTitle = "List of Categories";
+                    break;
+                case "Actress":
+                    var allActorTags = string.Join(",", context.TbMovie.Select(m => m.ActorTag)).Split(",");
+                    ltm.ListTags = _cache.GetOrCreate<List<TagModel>>(CacheKeys.ListActorTags,
+                        cacheEntry =>
+                        {
+                            allActorTags.Distinct().Select(a => new TagModel() { name = a, quantity = allActorTags.Count(m => m.Contains(a)) }).ToList();
+                            return ltm.ListTags.OrderByDescending(t=>t.quantity).ToList();
+                        });
+                    ltm.Action = "Actor";
+                    ltm.PageTitle = "List of Actress";
+                    break;
+                case "Studio":
+                    var allStudioTags = string.Join(",", context.TbMovie.Select(m => m.StudioTag)).Split(",").Distinct();
+                    ltm.ListTags = _cache.GetOrCreate<List<TagModel>>(CacheKeys.ListStudioTags,
+                        cacheEntry =>
+                        {
+                            allStudioTags.Distinct().Select(a => new TagModel() { name = a, quantity = allStudioTags.Count(m => m.Contains(a)) }).ToList();
+                            return ltm.ListTags.OrderByDescending(t => t.quantity).ToList();
+                        });
+                    ltm.Action = "Studio";
+                    ltm.PageTitle = "List of Studios";
+                    break;
+            }
+            ltm.TagType = TagType;
+            return ltm;
         }
     }
 }

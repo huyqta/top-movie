@@ -4,12 +4,14 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Movie.Services.Models;
 
 namespace TopMovie
 {
+    [Authorize]
     public class LoginController : Controller
     {
         webphimContext context = new webphimContext();
@@ -21,6 +23,7 @@ namespace TopMovie
 
         //[Route("login")]
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Login(string username, string password)
         {
             MD5 md5Hash = MD5.Create();

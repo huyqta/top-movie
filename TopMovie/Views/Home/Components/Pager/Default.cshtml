@@ -17,32 +17,40 @@
     var finishIndex = Math.Min(Model.CurrentPage + 5, Model.PageCount);
 }
 <div class="row render-ajax">
-        @foreach (var mv in Model.Results)
-        {
-            <div class="col-md-4">
-                <div class="info-box">
-                    <div class="box-body box-profile">
-                        <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
-                            <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
-                        </a>
-                        <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
-                            <div class="movie-title">
-                                <h5 class="text-bold">@mv.MovieName</h5>
-                            </div>
-                        </a>
-                        <p class="text-muted">
-                            <i class="fa fa-tags"></i>@mv.ActorTag
-                        </p>
-                    </div>
+    @foreach (var mv in Model.Results)
+    {
+        <div class="col-md-4">
+            <div class="info-box">
+                <div class="box-body box-profile">
+                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
+                        <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                    </a>
+                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
+                        <div class="movie-title">
+                            <h5 class="text-bold">@mv.MovieName</h5>
+                        </div>
+                    </a>
+                    <p class="text-muted">
+                        <i class="fa fa-eye"></i>&nbsp;@string.Format("{0}k", Math.Round(double.Parse(mv.CountView.ToString()) / 1000, 1))
+                        <i class="fa fa-ellipsis-h"></i>
+                        <i class="fa fa-thumbs-up"></i>&nbsp;@string.Format("{0} %", Math.Round((float)mv.CountLike / (float)mv.CountView * 100), 0)
+                    </p>
+                    <p class="text-muted" style="font-size: 12px;">
+                        @foreach (var tag in mv.ActorTag.Split(","))
+                        {
+                            <a href="@Url.Content("actor/" + tag)" target="_self">@tag</a><span>,</span>
+                        }
+                    </p>
                 </div>
             </div>
-        }
-    </div>
+        </div>
+    }
+</div>
 @*<div class="row">
-    <div class="col-md-8 col-sm-8 items-info">
-        Items @Model.FirstRowOnPage to @Model.LastRowOnPage of @Model.RowCount total
-    </div>
-</div>*@
+        <div class="col-md-8 col-sm-8 items-info">
+            Items @Model.FirstRowOnPage to @Model.LastRowOnPage of @Model.RowCount total
+        </div>
+    </div>*@
 <div class="row">
     <div class="col-md-8 col-sm-8">
         @if (Model.PageCount > 1)

@@ -41,11 +41,12 @@ namespace TopMovie.Models
                         this.PageTitle = "List of Categories";
                         break;
                     case "Actress":
-                        var allActorTags = string.Join(",", context.TbMovie.Select(m => m.ActorTag)).Split(",").Distinct();
-                        foreach (var tag in allActorTags)
-                        {
-                            this._ListTagModel.Add(new TagModel() { name = tag, quantity = context.TbMovie.Count(m => m.ActorTag.Contains(tag)) });
-                        }
+                        var allActorTags = string.Join(",", context.TbMovie.Select(m => m.ActorTag)).Split(",");
+                        this._ListTagModel = allActorTags.Distinct().Select(a => new TagModel() { name = a, quantity = allActorTags.Count(m => m.Contains(a)) }).ToList();
+                        //foreach (var tag in allActorTags)
+                        //{
+                        //    this._ListTagModel.Add(new TagModel() { name = tag, quantity = context.TbMovie.Count(m => m.ActorTag.Contains(tag)) });
+                        //}
                         this.Action = "Actor";
                         this.PageTitle = "List of Actress";
                         break;

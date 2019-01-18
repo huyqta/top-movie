@@ -1,166 +1,164 @@
 ﻿@inject Movie.Services.Models.webphimContext context;
-@* --- RIGHT SECTION--- *@
-<div class="col-md-3">
-    @* --- NEWS --- *@
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">WELCOME!!</h3>
-                </div>
-                <div class="box-body box-profile">
-                    <span>
-                        All JAV movies are mobile ready.
 
-                        This is a quality JAV tube, content is handpicked.
+<cache vary-by="@context">
+    @* --- RIGHT SECTION--- *@
+    <div class="col-md-3">
+        @* --- NEWS --- *@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">WELCOME!!</h3>
+                    </div>
+                    <div class="box-body box-profile">
+                        <span>
+                            All JAV movies are mobile ready.
 
-                        If a video is down (and you want it), let me know in the comments section.
-                    </span>
+                            This is a quality JAV tube, content is handpicked.
+
+                            If a video is down (and you want it), let me know in the comments section.
+                        </span>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.box-body -->
             </div>
         </div>
-    </div>
-    @* --- MOVIE BY PERIOD --- *@
-    <div class="row">
-        <div class="col-md-12">
-            <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#daily" data-toggle="tab">Daily</a></li>
-                    <li><a href="#weekly" data-toggle="tab">Weekly</a></li>
-                    <li><a href="#monthly" data-toggle="tab">Monthly</a></li>
+        @* --- MOVIE BY PERIOD --- *@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#daily" data-toggle="tab">Daily</a></li>
+                        <li><a href="#weekly" data-toggle="tab">Weekly</a></li>
+                        <li><a href="#monthly" data-toggle="tab">Monthly</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="daily">
+                            @foreach (var mv in context.TbMovie.ToList().Take(4))
+                            {
+                                <div class="box">
+                                    <div class="box-body box-profile">
+                                        <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
+                                            <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                        </a>
+                                        <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
+
+                                        <i class="fa fa-tags"></i>
+                                        @foreach (var tag in mv.MovieTag.Split(","))
+                                        {
+                                            <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
+                                        }
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                            }
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="weekly">
+                            @foreach (var mv in context.TbMovie.ToList().Take(4))
+                            {
+                                <div class="box">
+                                    <div class="box-body box-profile">
+                                        <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
+                                            <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                        </a>
+                                        <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
+
+                                        <i class="fa fa-tags"></i>
+                                        @foreach (var tag in mv.MovieTag.Split(","))
+                                        {
+                                            <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
+                                        }
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                            }
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="monthly">
+                            @foreach (var mv in context.TbMovie.ToList().Take(4))
+                            {
+                                <div class="box">
+                                    <div class="box-body box-profile">
+                                        <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
+                                            <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
+                                        </a>
+                                        <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
+
+                                        <i class="fa fa-tags"></i>
+                                        @foreach (var tag in mv.MovieTag.Split(","))
+                                        {
+                                            <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
+                                        }
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                            }
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+            </div>
+        </div>
+        @* --- HOT TOPICS --- *@
+        <div class="row hidden">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">HOT TOPICS</h3>
+                    </div>
+                    <div class="box-body">
+                        <ul class="list-group list-group-unbordered">
+                            @foreach (var mv in context.TbMovie.ToList().Take(4))
+                            {
+                                <li class="list-group-item">
+                                    <b>@mv.MovieName</b> <a class="pull-right">@mv.ActorTag</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        @* --- RECENT COMMENTS --- *@
+        <div class="box box-primary hidden">
+            <div class="box-header with-border">
+                <h3 class="box-title">RECENT COMMENTS</h3>
+            </div>
+            <div class="box-body box-profile">
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item">
+                        <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                        <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                        <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                        <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                        <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
+                    </li>
                 </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="daily">
-                        @foreach (var mv in context.TbMovie.ToList().Take(4))
-                        {
-                            <div class="box">
-                                <div class="box-body box-profile">
-                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
-                                        <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
-                                    </a>
-                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
-
-                                    <i class="fa fa-tags"></i>
-                                    @foreach (var tag in mv.MovieTag.Split(","))
-                                    {
-                                        <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
-                                    }
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                        }
-                    </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="weekly">
-                        @foreach (var mv in context.TbMovie.ToList().Take(4))
-                        {
-                            <div class="box">
-                                <div class="box-body box-profile">
-                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
-                                        <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
-                                    </a>
-                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
-
-                                    <i class="fa fa-tags"></i>
-                                    @foreach (var tag in mv.MovieTag.Split(","))
-                                    {
-                                        <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
-                                    }
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                        }
-                    </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="monthly">
-                        @foreach (var mv in context.TbMovie.ToList().Take(4))
-                        {
-                            <div class="box">
-                                <div class="box-body box-profile">
-                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
-                                        <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
-                                    </a>
-                                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self"><h5 class="text-bold">@mv.MovieName</h5></a>
-
-                                    <i class="fa fa-tags"></i>
-                                    @foreach (var tag in mv.MovieTag.Split(","))
-                                    {
-                                        <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a><span>,</span>
-                                    }
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                        }
-                    </div>
-                    <!-- /.tab-pane -->
-                </div>
-                <!-- /.tab-content -->
             </div>
+            <!-- /.box-body -->
         </div>
-    </div>
-    @* --- HOT TOPICS --- *@
-    <div class="row hidden">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">HOT TOPICS</h3>
-                </div>
-                <div class="box-body">
-                    <ul class="list-group list-group-unbordered">
-                        @foreach (var mv in context.TbMovie.ToList().Take(4))
+        @* --- CATEGORIES --- *@
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">CATEGORIES</h3>
+            </div>
+            <div class="box-body box-profile">
+                <ul class="list-group list-group-unbordered">
+                    @{
+                        var listCategories = string.Join(",", context.TbMovie.Select(m => m.CategoryTag)).Split(",").Distinct().Take(9);
+                        foreach (var cat in listCategories)
                         {
                             <li class="list-group-item">
-                                <b>@mv.MovieName</b> <a class="pull-right">@mv.ActorTag</a>
+                                <a href="@Url.Content("category/" + cat)" target="_self">@cat</a>
                             </li>
                         }
-                    </ul>
-                </div>
-                <!-- /.box-body -->
-            </div>
-        </div>
-    </div>
-    @* --- RECENT COMMENTS --- *@
-    <div class="box box-primary hidden">
-        <div class="box-header with-border">
-            <h3 class="box-title">RECENT COMMENTS</h3>
-        </div>
-        <div class="box-body box-profile">
-            <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
-                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
-                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
-                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
-                    <p><strong>Phuc.Nguyen: </strong><span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></p>
-                </li>
-            </ul>
-        </div>
-        <!-- /.box-body -->
-    </div>
-    @* --- CATEGORIES --- *@
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">CATEGORIES</h3>
-        </div>
-        <div class="box-body box-profile">
-            <ul class="list-group list-group-unbordered">
-                @{
-                    var listCategories = string.Join(",", context.TbMovie.Select(m => m.CategoryTag)).Split(",").Distinct().Take(9);
-                    foreach (var cat in listCategories)
-                    {
-                        <li class="list-group-item">
-                            <a href="@Url.Content("category/" + cat)" target="_self">@cat</a>
-                        </li>
                     }
-                }
-            </ul>
+                </ul>
+            </div>
+            <!-- /.box-body -->
         </div>
-        <!-- /.box-body -->
     </div>
-</div>
-<script>
-        //$.ajax({
-        //    url: "Category"
-        //})
-</script>
+</cache>

@@ -10,7 +10,7 @@
                         <a href="@Url.Content("Home/WatchMovie/" + @mv.Id)" target = "_self"><h3 class="profile-username text-bold">@mv.MovieName</h3></a>
 
                         <p class="text-muted">
-                            <i class="fas fa-tags"></i>
+                            <i class="fa fa-tags"></i>
                             @foreach (var tag in mv.MovieTag.Split(","))
                             {
                                 <a href="@Url.Action("Tag", "Home", new { tag = tag })" target="_self">@tag</a><span>,</span>

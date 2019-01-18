@@ -6,8 +6,16 @@ namespace Movie.Services.Models
 {
     public partial class webphimContext : DbContext
     {
+        private string database;
+
         public webphimContext()
         {
+            database = "webphim_backup";
+        }
+
+        public webphimContext(string db)
+        {
+            database = db;
         }
 
         public webphimContext(DbContextOptions<webphimContext> options)
@@ -26,8 +34,9 @@ namespace Movie.Services.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySQL("Server=128.199.183.242;User Id=huyqta;Password=huyqta;Database=webphim_backup");
+                if (string.IsNullOrWhiteSpace(database)) database = "webphim_backup";
+                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseMySQL("Server=128.199.183.242;User Id=huyqta;Password=huyqta;Database=" + database);
             }
         }
 
@@ -37,7 +46,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbAccount>(entity =>
             {
-                entity.ToTable("tb_account", "webphim_backup");
+                entity.ToTable("tb_account", database);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -67,7 +76,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbActor>(entity =>
             {
-                entity.ToTable("tb_actor", "webphim_backup");
+                entity.ToTable("tb_actor", database);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -93,7 +102,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbCategoryMovie>(entity =>
             {
-                entity.ToTable("tb_category_movie", "webphim_backup");
+                entity.ToTable("tb_category_movie", database);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -111,7 +120,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbComment>(entity =>
             {
-                entity.ToTable("tb_comment", "webphim_backup");
+                entity.ToTable("tb_comment", database);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -155,7 +164,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbCrawl>(entity =>
             {
-                entity.ToTable("tb_crawl", "webphim_backup");
+                entity.ToTable("tb_crawl", database);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
@@ -184,7 +193,7 @@ namespace Movie.Services.Models
 
             modelBuilder.Entity<TbMovie>(entity =>
             {
-                entity.ToTable("tb_movie", "webphim_backup");
+                entity.ToTable("tb_movie", database);
 
                 entity.HasIndex(e => e.CategoryId)
                     .HasName("category_id_2");

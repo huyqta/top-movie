@@ -23,6 +23,7 @@ namespace TopMovie
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<webphimContext>();
             services.AddDistributedMemoryCache();
@@ -71,6 +72,7 @@ namespace TopMovie
                 .AddRewrite(@"tags", "Home/ListTags?type=Tag", skipRemainingRules: false)
                 .AddRewrite(@"tag/(.*)", "Home/Tag?tag=$1", skipRemainingRules: false)
                 .AddRewrite(@"category/(.*)", "Home/Category?category=$1", skipRemainingRules: false)
+                .AddRewrite(@"studio/(.*)", "Home/Studio?studio=$1", skipRemainingRules: false)
                 .AddRewrite(@"actress/(.*)", "Home/Actor?actor=$1", skipRemainingRules: false);
 
 

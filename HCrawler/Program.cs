@@ -3,6 +3,7 @@ using HtmlAgilityPack;
 using Movie.Services.Models;
 using System.Globalization;
 using HCrawler.CrawlSites;
+using HCrawler.SupportScripts;
 
 namespace HCrawler
 {
@@ -12,55 +13,15 @@ namespace HCrawler
         {
             try
             {
-                JavforMe me = new JavforMe();
-                for (int j = 1393; j < 2379; j++)
-                {
-                    me.SiteUrl = "https://javfor.me";
-                    //me.SiteUrl = "http://www.phimmoi.net";
-                    me.CrawlPage(j);
-                }
-                    
-                //var site_url = "https://javfor.me";
-                //Console.WriteLine("Hello World!");
-                //webphimContext context = new webphimContext();
-                //for (int j = 1; j < 2379; j++)
+                //JavforMe me = new JavforMe();
+                //for (int j = 1393; j < 2379; j++)
                 //{
-                //    var url = string.Format("https://javfor.me/list/hot/{0}.html", j);
-                //    var web = new HtmlWeb();
-                //    var html = web.Load(url);
-                //    var htmlDoc = web.Load(url);
-                //    var movie_url = string.Empty;
-                //    int index = 1;
-                //    var nodes = htmlDoc.DocumentNode.SelectNodes("//div[@class='video-img']/a");
-                //    foreach (var node in nodes)
-                //    {
-                //        var movie = new TbMovie();
-                //        movie_url = site_url + node.Attributes[0].Value;
-                //        htmlDoc = web.Load(movie_url);
-                //        //movie.GoogleDrive = movie_url;
-                //        movie.MovieName = htmlDoc.DocumentNode.SelectNodes("//h5[@class='py-2']")[0].InnerHtml;
-                //        movie.PosterUrl = node.ChildNodes[1].Attributes[1].Value;
-                //        movie.ImageUrl = movie.PosterUrl;
-                //        var movie_infor = htmlDoc.DocumentNode.SelectNodes("//div[@class='movie-description mt-3']/div");
-                //        for (int i = 0; i < 4; i++)
-                //        {
-                //            movie.ReleaseDate = DateTime.ParseExact(movie_infor[0].InnerText.Split(":")[1].Trim(), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                //            movie.ActorTag = movie_infor[1].InnerText.Split(":")[1].Trim();
-                //            movie.StudioTag = movie_infor[2].InnerText.Split(":")[1].Trim();
-                //            movie.MovieTag = movie_infor[3].InnerText.Split(":")[1].Trim();
-                //            movie.CategoryTag = "JAV,HD";
-                //            movie.Country = "Japan";
-                //            movie.ImdbId = movie.MovieName.Split(" ")[0] == "EN" ? movie.MovieName.Split(" ")[1] : movie.MovieName.Split(" ")[0];
-                //            movie.StudioTag = movie.ImdbId.Split("-")[0];
-                //            movie.MovieType = "PS";
-                //        }
-                //        context.TbMovie.Add(movie);
-                //        Console.WriteLine(index + "-" + movie.ImdbId);
-                //        index++;
-                //    }
+                //    me.SiteUrl = "https://javfor.me";
+                //    //me.SiteUrl = "http://www.phimmoi.net";
+                //    me.CrawlPage(j);
                 //}
-                
-                //context.SaveChanges();
+                RandomViewAndLike rd = new RandomViewAndLike();
+                rd.GenerateViewAndLike(0, 0);
             }
             catch (Exception ex)
             {
