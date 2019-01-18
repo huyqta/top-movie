@@ -44,6 +44,8 @@ namespace TopMovie.Controllers
         public IActionResult WatchMovie(int id)
         {
             var movie = context.TbMovie.FirstOrDefault(m => m.Id == id);
+            movie.CountView = movie.CountView + 1;
+            context.SaveChanges();
             return View(movie);
 
         }

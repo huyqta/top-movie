@@ -59,5 +59,22 @@ namespace TopMovie
             var result = context.SaveChanges();
             return result;
         }
+
+        [HttpGet]
+        public int AdjustLike([FromBody] int id, bool isUp)
+        {
+            var oldMovie = context.TbMovie.FirstOrDefault(c => c.Id == id);
+            if (isUp)
+            {
+                oldMovie.CountLike += 1;
+            }
+            else
+            {
+                oldMovie.CountLike -= 1;
+            }
+            context.Entry<TbMovie>(oldMovie).CurrentValues.SetValues(oldMovie);
+            var result = context.SaveChanges();
+            return result;
+        }
     }
 }

@@ -180,9 +180,10 @@
         });
         $("#button_thumbs-up").click(function () {
              //e.preventDefault();
-            var url = "/Home/ThumbUp";
+            var url = "/Movie/AdjustLike";
+    
             $.ajax({
-                type: "POST",
+                type: "GET",
                 url: url,
                 data: JSON.stringify(comment),
                 contentType: "application/json; charset=utf-8",
