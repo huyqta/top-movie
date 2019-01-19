@@ -231,6 +231,7 @@
     <Content Remove="wwwroot\dist\bootstrap-datepicker\js\locales\bootstrap-datepicker.it.js" />
     <Content Remove="wwwroot\dist\Ionicons\png\512\calculator.png" />
     <Content Remove="wwwroot\dist\Ionicons\png\512\ios7-minus-outline.png" />
+    <None Remove="Views\Home\Components\Pager\Default.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -2227,10 +2228,10 @@
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\global\" />
     <Folder Include="wwwroot\bower_components\inputmask\dist\min\inputmask\phone-codes\" />
     <Folder Include="Views\Crawler\" />
+    <Folder Include="Views\Home\Components\Pager\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Home\Components\Pager\Default.cshtml" />
     <None Include="wwwroot\bower_components\bootstrap-colorpicker\.editorconfig" />
     <None Include="wwwroot\bower_components\bootstrap-colorpicker\.github\CODE_OF_CONDUCT.md" />
     <None Include="wwwroot\bower_components\bootstrap-colorpicker\.github\CONTRIBUTING.md" />

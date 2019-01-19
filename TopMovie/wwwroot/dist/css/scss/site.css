@@ -1,4 +1,4 @@
-﻿/*--------logo color*/
+/*--------logo color*/
 /*--------header menu background*/
 /*--------body background*/
 /*--------logo color*/
@@ -14,7 +14,8 @@
 /* Set font size of site to 13px */
 body {
   /*margin: 0 -15px;*/
-  /*background: url('../../../img/weather.png') repeat;*/ }
+  /*background: url('../../../img/weather.png') repeat;*/
+}
 
 /*--------logo color*/
 /*--------header menu background*/
@@ -26,35 +27,44 @@ body {
   align-items: center;
   padding: 0 60px;
   /*.menu-item {
-        &:hover {
-            background: transparent !important;
-        }
-    }*/ }
-  .header-menu .menu-item, .header-menu .menu-item a {
-    font-family: 'Oswald', sans-serif;
-    font-size: 24px;
-    color: #9CAAC6;
-    margin: 0 15px; }
-  .header-menu .dropdown-menu {
-    background-color: #2D3956; }
-  .header-menu .dropdown-menu > li > a {
-    color: #9CAAC6; }
+      &:hover {
+          background: transparent !important;
+      }
+  }*/
+}
+.header-menu .menu-item, .header-menu .menu-item a {
+  font-family: "Oswald", sans-serif;
+  font-size: 24px;
+  color: #9CAAC6;
+  margin: 0 15px;
+}
+.header-menu .dropdown-menu {
+  background-color: #2D3956;
+}
+.header-menu .dropdown-menu > li > a {
+  color: #9CAAC6;
+}
 
 .logo-text {
-  font-family: 'Coiny', cursive;
+  font-family: "Coiny", cursive;
   font-size: 30px;
   padding-top: 8px;
   float: left;
-  display: flex; }
-  .logo-text .logo-color-1 {
-    color: #E0E9E9; }
-  .logo-text .logo-color-2 {
-    color: #616A7F; }
+  display: flex;
+}
+.logo-text .logo-color-1 {
+  color: #E0E9E9;
+}
+.logo-text .logo-color-2 {
+  color: #616A7F;
+}
 
 #search-box {
-  margin-top: 5px; }
-  #search-box .search-textbox {
-    border: 1px solid white; }
+  margin-top: 5px;
+}
+#search-box .search-textbox {
+  border: 1px solid white;
+}
 
 /*.header-menu .menu-item:hover {
     background: transparent !important;
@@ -62,17 +72,20 @@ body {
 .nav > li > a:focus, .nav > li > a:hover {
   background: transparent;
   background-color: transparent;
-  color: white; }
+  color: white;
+}
 
 .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
   background: transparent;
   background-color: transparent;
-  color: white; }
+  color: white;
+}
 
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
   background: transparent;
   background-color: transparent;
-  color: white; }
+  color: white;
+}
 
 /*--------logo color*/
 /*--------header menu background*/
@@ -80,36 +93,64 @@ body {
 .footer-break-line {
   height: 30px;
   background-color: #2D3956;
-  opacity: 0.9; }
+  opacity: 0.9;
+}
 
 .footer-content {
-  font-family: 'Coiny', cursive;
+  font-family: "Coiny", cursive;
   background-color: #2D3956;
   color: white;
   padding: 0 60px;
-  padding-bottom: 15px; }
-  .footer-content a {
-    font-family: Arial;
-    color: #9CAAC6; }
-    .footer-content a:hover {
-      color: white; }
+  padding-bottom: 15px;
+}
+.footer-content a {
+  font-family: Arial;
+  color: #9CAAC6;
+}
+.footer-content a:hover {
+  color: white;
+}
 
 .homepage-content {
-  margin-top: 15px; }
+  margin-top: 15px;
+}
 
 .movie-img {
   margin: 0 auto;
   width: 100%;
   height: 150px;
-  padding: 3px; }
+  padding: 3px;
+}
 
 .movie-title {
-  display: block;
+  /*display: block;
   margin-top: .25rem;
   height: 4.2rem;
   font-size: .9rem;
   line-height: 1.1rem;
-  overflow: hidden; }
+  overflow: hidden;*/
+  display: block;
+  /* margin-top: .25rem; */
+  height: 41px;
+  /* font-size: .9rem; */
+  /* line-height: 1.1rem; */
+  overflow: hidden;
+}
+.movie-title h5 {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
 .list-tags {
-  column-count: 4; }
+  column-count: 4;
+}
+
+.watch-movie-icon {
+  font-size: 16px;
+  color: black;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=site.css.map */

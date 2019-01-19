@@ -17,8 +17,11 @@
     <div class="box-body">
         @Html.Raw(@Model.GoogleDrive)
         <div id="player-tool-left">
-            <a id="button_thumbs-up"><i class="fa fa-thumbs-up"></i><span> Like it </span></a>
-            <a id="button_thumbs-down"><i class="fa fa-thumbs-down"></i><span> Dislike </span></a>
+            <a id="button_thumbs-up" class="watch-movie-icon"><i class="fa fa-thumbs-up"></i><span> Like it </span></a>&nbsp;
+            <a id="button_thumbs-down" class="watch-movie-icon"><i class="fa fa-thumbs-down"></i><span> Dislike </span></a>&nbsp;
+            <a id="button_download" class="watch-movie-icon"><i class="fa fa-download"></i><span> Download </span></a>&nbsp;
+            <a id="button_expand" class="watch-movie-icon"><i class="fa fa-arrows-alt"></i><span> Expand </span></a>&nbsp;
+            <a id="button_thumbs-down" class="watch-movie-icon"><i class="fa fa-toggle-right"></i><span> Next Scene </span></a>
         </div>
     </div>
 </div>
@@ -41,7 +44,7 @@
             <dd>
                 @foreach (var category in Model.CategoryTag.Split(","))
                 {
-                    <a href="@Url.Action("Category", "Home", new { category = category })" target="_self">@category</a>
+                    <a href="@Url.Content("category/" + category)" target="_self">@category</a><span>,</span>
                     if (context.TbMovie.Any(m => m.CategoryTag.IndexOf(category) > -1))
                     {
                         relatedMovies.Add(context.TbMovie.FirstOrDefault(m => m.CategoryTag.Contains(category)));
@@ -52,7 +55,7 @@
             <dd>
                 @foreach (var tag in Model.MovieTag.Split(","))
                 {
-                    <a href="@Url.Action("Tag", "Home", new { tag = tag }))" target="_self">@tag</a>
+                    <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a>
                     if (context.TbMovie.Any(m => m.MovieTag.IndexOf(tag) > -1))
                     {
                         relatedMovies.Add(context.TbMovie.FirstOrDefault(m => m.MovieTag.Contains(tag)));
@@ -63,7 +66,7 @@
             <dd>
                 @foreach (var actor in Model.ActorTag.Split(","))
                 {
-                    <a href="@Url.Action("Actor", "Home", new { actor = actor })" target="_self">@actor</a>
+                    <a href="@Url.Content("actor/" + actor )" target="_self">@actor</a>
                     if (context.TbMovie.Any(m => m.ActorTag.IndexOf(actor) > -1))
                     {
                         relatedMovies.Add(context.TbMovie.FirstOrDefault(m => m.ActorTag.Contains(actor)));
@@ -83,11 +86,6 @@
     <div class="box-body">
         <div class="box-body">
             <div id="form-comment">
-                @*<div class="form-group">
-                        <i class="fa fa-comments"></i>
-                        Comments:
-                        <span class="label label-primary">2</span>
-                    </div>*@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- textarea -->
@@ -138,16 +136,20 @@
     <!-- /.box-header -->
     <div class="box-body">
         @{
-            relatedMovies.Distinct().Take(12);
-            <div class="row">
-                @foreach (var movie in relatedMovies)
-                {
-                    <div class="col-md-2">
-                        <img id="movie-box" class="movie-img img-responsive" src="@movie.ImageUrl" alt="@movie.MovieName">
-                        <h5>@movie.MovieName</h5>
-                    </div>
-                }
+        relatedMovies.Distinct().Take(8).ToList();
+        <div class="row">
+            @foreach (var movie in relatedMovies)
+        {
+            <div class="col-md-3">
+                <a href="@Url.Content("movie/" + @movie.Id)" target="_self">
+                    <img id="movie-box" class="movie-img img-responsive" src="@movie.ImageUrl" alt="@movie.MovieName">
+                </a>
+                <a href="@Url.Content("movie/" + @movie.Id)" target="_self">
+                    <h5 class="text-bold">@movie.MovieName</h5>
+                </a>
             </div>
+    }
+        </div>
         }
     </div>
 </div>

@@ -10,12 +10,25 @@
 }
 
 .movie-title {
-    display: block;
+    /*display: block;
     margin-top: .25rem;
     height: 4.2rem;
     font-size: .9rem;
     line-height: 1.1rem;
+    overflow: hidden;*/
+    display: block;
+    /* margin-top: .25rem; */
+    height: 41px;
+    /* font-size: .9rem; */
+    /* line-height: 1.1rem; */
     overflow: hidden;
+
+    h5 {
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
 }
 
 .list-tags {
