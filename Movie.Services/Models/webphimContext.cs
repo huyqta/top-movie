@@ -10,7 +10,7 @@ namespace Movie.Services.Models
 
         public webphimContext()
         {
-            database = "webphim_backup";
+            database = "webphim";
         }
 
         public webphimContext(string db)
@@ -34,7 +34,7 @@ namespace Movie.Services.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                if (string.IsNullOrWhiteSpace(database)) database = "webphim_backup";
+                if (string.IsNullOrWhiteSpace(database)) database = "webphim";
                 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySQL("Server=128.199.183.242;User Id=huyqta;Password=huyqta;Database=" + database);
             }
@@ -292,6 +292,104 @@ namespace Movie.Services.Models
                     .WithMany(p => p.TbMovie)
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("tb_movie_ibfk_1");
+            });
+
+            modelBuilder.Entity<TbMoviePhimmoi>(entity =>
+            {
+                entity.ToTable("tb_movie_phimmoi", "webphim");
+
+                entity.HasIndex(e => e.CategoryId)
+                    .HasName("category_id_2");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.ActorTag)
+                    .HasColumnName("actor_tag")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("\"\"");
+
+                entity.Property(e => e.CategoryId)
+                    .HasColumnName("category_id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CategoryTag)
+                    .HasColumnName("category_tag")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("\"\"");
+
+                entity.Property(e => e.CountLike)
+                    .HasColumnName("count_like")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("95");
+
+                entity.Property(e => e.CountView)
+                    .HasColumnName("count_view")
+                    .HasColumnType("int(11)")
+                    .HasDefaultValueSql("97");
+
+                entity.Property(e => e.Country)
+                    .HasColumnName("country")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                    .HasColumnName("description")
+                    .HasMaxLength(4000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.GoogleDrive)
+                    .HasColumnName("google_drive")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ImageUrl)
+                    .HasColumnName("image_url")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ImdbId)
+                    .HasColumnName("imdb_id")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MovieName)
+                    .IsRequired()
+                    .HasColumnName("movie_name")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MovieTag)
+                    .HasColumnName("movie_tag")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("\"\"");
+
+                entity.Property(e => e.MovieType)
+                    .HasColumnName("movie_type")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PosterUrl)
+                    .HasColumnName("poster_url")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ReleaseDate).HasColumnName("release_date");
+
+                entity.Property(e => e.StudioTag)
+                    .HasColumnName("studio_tag")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
+                    .HasDefaultValueSql("\"\"");
+
+                entity.Property(e => e.Trailer)
+                    .HasColumnName("trailer")
+                    .HasMaxLength(2000)
+                    .IsUnicode(false);
             });
         }
     }

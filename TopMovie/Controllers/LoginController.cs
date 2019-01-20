@@ -11,7 +11,6 @@ using Movie.Services.Models;
 
 namespace TopMovie
 {
-    [Authorize]
     public class LoginController : Controller
     {
         webphimContext context = new webphimContext();

@@ -10,7 +10,7 @@ namespace HCrawler.CrawlSites
 {
     class PhimMoi
     {
-        webphimContext context = new webphimContext();
+        webphimContext context = new webphimContext("webphim_phimmoi");
 
         public string SiteUrl { get; set; }
 

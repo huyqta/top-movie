@@ -70,11 +70,14 @@ namespace TopMovie
                 .AddRewrite(@"actresses", "Home/ListTags?type=Actress", skipRemainingRules: false)
                 .AddRewrite(@"studios", "Home/ListTags?type=Studio", skipRemainingRules: false)
                 .AddRewrite(@"tags", "Home/ListTags?type=Tag", skipRemainingRules: false)
-                .AddRewrite(@"tag/(.*)", "Home/Tag?tag=$1", skipRemainingRules: false)
-                .AddRewrite(@"category/(.*)", "Home/Category?category=$1", skipRemainingRules: false)
-                .AddRewrite(@"studio/(.*)", "Home/Studio?studio=$1", skipRemainingRules: false)
-                .AddRewrite(@"actress/(.*)", "Home/Actor?actor=$1", skipRemainingRules: false);
-
+                .AddRewrite(@"ensubtitle", "Home/SelectMovieType?type=ensub", skipRemainingRules: false)
+                .AddRewrite(@"hentai", "Home/SelectMovieType?type=hentai", skipRemainingRules: false)
+                .AddRewrite(@"uncensor", "Home/SelectMovieType?type=uncen", skipRemainingRules: false)
+                .AddRewrite(@"clip", "Home/SelectMovieType?type=clip", skipRemainingRules: false)
+                .AddRewrite(@"tag/(.*)/(\d+)", "Home/Tag?tag=$1&page=$2", skipRemainingRules: false)
+                .AddRewrite(@"category/(.*)/(\d+)", "Home/Category?category=$1&page=$2", skipRemainingRules: false)
+                .AddRewrite(@"studio/(.*)/(\d+)", "Home/Studio?studio=$1&page=$2", skipRemainingRules: false)
+                .AddRewrite(@"actress/(.*)/(\d+)", "Home/Actor?actor=$1&page=$2", skipRemainingRules: false);
 
                 app.UseRewriter(rewrite);
                 

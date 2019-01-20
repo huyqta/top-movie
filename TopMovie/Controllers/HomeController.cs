@@ -50,32 +50,36 @@ namespace TopMovie.Controllers
 
         }
 
-        public IActionResult Actor(string actor)
+        public IActionResult Actor(string actor, int? page)
         {
-            CategoriesMoviesModel model = new CategoriesMoviesModel();
-            model.movies = context.TbMovie.Where(m => m.ActorTag.Contains(actor)).ToList();
-            return View("ListMovies", model);
+            var result = context.TbMovie.Where(m => m.ActorTag.Contains(actor));
+            if (page == 0 || page == null) page = 1;
+            var model = result.GetPaged<TbMovie>(page.Value, 21);
+            return View("Index", model);
         }
 
-        public IActionResult Tag(string tag)
+        public IActionResult Tag(string tag, int? page)
         {
-            CategoriesMoviesModel model = new CategoriesMoviesModel();
-            model.movies = context.TbMovie.Where(m => m.MovieTag.Contains(tag)).ToList();
-            return View("ListMovies", model);
+            var result = context.TbMovie.Where(m => m.MovieTag.Contains(tag));
+            if (page == 0 || page == null) page = 1;
+            var model = result.GetPaged<TbMovie>(page.Value, 21);
+            return View("Index", model);
         }
 
-        public IActionResult Category(string category)
+        public IActionResult Category(string category, int? page)
         {
-            CategoriesMoviesModel model = new CategoriesMoviesModel();
-            model.movies = context.TbMovie.Where(m => m.CategoryTag.Contains(category)).ToList();
-            return View("ListMovies", model);
+            var result = context.TbMovie.Where(m => m.CategoryTag.Contains(category));
+            if (page == 0 || page == null) page = 1;
+            var model = result.GetPaged<TbMovie>(page.Value, 21);
+            return View("Index", model);
         }
 
-        public IActionResult Studio(string studio)
+        public IActionResult Studio(string studio, int? page)
         {
-            CategoriesMoviesModel model = new CategoriesMoviesModel();
-            model.movies = context.TbMovie.Where(m => m.StudioTag.Contains(studio)).ToList();
-            return View("ListMovies", model);
+            var result = context.TbMovie.Where(m => m.StudioTag.Contains(studio));
+            if (page == 0 || page == null) page = 1;
+            var model = result.GetPaged<TbMovie>(page.Value, 21);
+            return View("Index", model);
         }
 
         public IActionResult About()
@@ -139,6 +143,42 @@ namespace TopMovie.Controllers
             ListTagModel model = new ListTagModel();
             model = GetListTagModel(type);
             return View("ListTags", model);
+        }
+
+        public IActionResult SelectMovieType(string type, int page = 1)
+        {
+            IQueryable<TbMovie> result = null;
+            switch (type)
+            {
+                case "ensub":
+                    result = context.TbMovie.Where(m => m.MovieTag.Contains("EN-Sub"));
+                    break;
+                case "uncen":
+                    result = context.TbMovie.Where(m => m.MovieTag.Contains("Uncensor"));
+                    break;
+                case "clip":
+                    result = context.TbMovie.Where(m => m.MovieTag.Contains("VideoClip"));
+                    break;
+                case "ecchi":
+                    result = context.TbMovie.Where(m => m.CategoryTag.Contains("Ecchi"));
+                    break;
+                case "hentai":
+                    result = context.TbMovie.Where(m => m.CategoryTag.Contains("Hentai"));
+                    break;
+            }
+            //var result = context.TbMovie.Where(m => m.MovieTag.Contains("EN-Sub"));
+            //var results = context.TbMovie.Where(m => m.MovieTag.Contains("Uncensor"));
+            if (page == 0) page = 1;
+            var model = result.GetPaged<TbMovie>(page, 21);
+            return View("Index", model);
+        }
+
+        public IActionResult UnCensor(int page = 1)
+        {
+            var result = context.TbMovie.Where(m => m.MovieTag.Contains("Uncensor"));
+            if (page == 0) page = 1;
+            var model = result.GetPaged<TbMovie>(page, 21);
+            return View(model);
         }
 
         private ListTagModel GetListTagModel(string TagType)

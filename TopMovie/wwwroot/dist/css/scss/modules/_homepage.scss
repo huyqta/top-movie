@@ -23,7 +23,7 @@
     /* line-height: 1.1rem; */
     overflow: hidden;
 
-    h5 {
+    h6 {
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -33,4 +33,37 @@
 
 .list-tags {
     column-count: 4;
+}
+
+.custom-nav-tabs {
+    .nav-tabs {
+        li .active {
+            border-top-color: #3c8dbc;
+        }
+    }
+
+    .nav-tabs {
+        li {
+            border-top: 3px solid transparent;
+            margin-bottom: 0px;
+            /*margin-right: 5px;*/
+            a {
+                background: transparent;
+                margin: 0;
+
+                &:hover {
+                    background: transparent;
+                    margin: 0;
+                }
+            }
+        }
+
+        .nav-link {
+            border-top: 3px solid transparent;
+        }
+    }
+
+    .tab-content {
+        margin-top: 5px;
+    }
 }

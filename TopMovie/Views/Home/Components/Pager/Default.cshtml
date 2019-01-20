@@ -15,10 +15,13 @@
 
     var startIndex = Math.Max(Model.CurrentPage - 5, 1);
     var finishIndex = Math.Min(Model.CurrentPage + 5, Model.PageCount);
+    int colSize = 4;
+    int colRender = 0;
 }
 <div class="row render-ajax">
     @foreach (var mv in Model.Results)
     {
+        colRender += colSize;
         <div class="col-md-4">
             <div class="info-box">
                 <div class="box-body box-profile">
@@ -27,7 +30,7 @@
                     </a>
                     <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
                         <div class="movie-title">
-                            <h5 class="text-bold">@mv.MovieName</h5>
+                            <h6 class="text-bold">@mv.MovieName</h6>
                         </div>
                     </a>
                     <p class="text-muted">
@@ -44,6 +47,11 @@
                 </div>
             </div>
         </div>
+        @if (colRender == 12)
+        {
+            colRender = 0;
+            <div class="clearfix"></div>
+        }
     }
 </div>
 @*<div class="row">
@@ -56,21 +64,21 @@
         @if (Model.PageCount > 1)
         {
             <ul class="pagination pull-right">
-                <li><a href="@urlTemplate.Replace("{0}", "1")">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="@urlTemplate.Replace("{0}", "1")">&laquo;</a></li>
                 @for (var i = startIndex; i <= finishIndex; i++)
                 {
                     @if (i == Model.CurrentPage)
                     {
 
-                        <li><span>@i</span></li>
+                        <li class="page-item"><span class="page-link">@i</span></li>
                     }
                     else
                     {
 
-                        <li><a href="@urlTemplate.Replace("{0}", i.ToString())">@i</a></li>
+                        <li class="page-item"><a class="page-link" href="@urlTemplate.Replace("{0}", i.ToString())">@i</a></li>
                     }
                 }
-                <li><a href="@urlTemplate.Replace("{0}", Model.PageCount.ToString())">&raquo;</a></li>
+                <li class="page-item"><a class="page-link" href="@urlTemplate.Replace("{0}", Model.PageCount.ToString())">&raquo;</a></li>
             </ul>}
     </div>
 </div>

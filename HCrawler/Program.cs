@@ -13,15 +13,15 @@ namespace HCrawler
         {
             try
             {
-                //JavforMe me = new JavforMe();
-                //for (int j = 1393; j < 2379; j++)
-                //{
-                //    me.SiteUrl = "https://javfor.me";
-                //    //me.SiteUrl = "http://www.phimmoi.net";
-                //    me.CrawlPage(j);
-                //}
-                RandomViewAndLike rd = new RandomViewAndLike();
-                rd.GenerateViewAndLike(0, 0);
+                PhimMoi me = new PhimMoi();
+                for (int j = 1393; j < 2379; j++)
+                {
+                    //me.SiteUrl = "https://javfor.me";
+                    me.SiteUrl = "http://www.phimmoi.net";
+                    me.CrawlPage(j);
+                }
+                //RandomViewAndLike rd = new RandomViewAndLike();
+                //rd.GenerateViewAndLike(0, 0);
             }
             catch (Exception ex)
             {
