@@ -44,7 +44,7 @@
             <dd>
                 @foreach (var category in Model.CategoryTag.Split(","))
                 {
-                    <a href="@Url.Content("category/" + category)" target="_self">@category</a><span>,</span>
+                    <a href="@Url.Content("/category/" + category)" target="_self">@category</a><span>,</span>
                     if (context.TbMovie.Any(m => m.CategoryTag.IndexOf(category) > -1))
                     {
                         relatedMovies.Add(context.TbMovie.FirstOrDefault(m => m.CategoryTag.Contains(category)));
@@ -55,7 +55,7 @@
             <dd>
                 @foreach (var tag in Model.MovieTag.Split(","))
                 {
-                    <a href="@Url.Content("tag/" + tag)" target="_self">@tag</a>
+                    <a href="@Url.Content("/tag/" + tag)" target="_self">@tag</a>
                     if (context.TbMovie.Any(m => m.MovieTag.IndexOf(tag) > -1))
                     {
                         relatedMovies.Add(context.TbMovie.FirstOrDefault(m => m.MovieTag.Contains(tag)));
@@ -66,7 +66,7 @@
             <dd>
                 @foreach (var actor in Model.ActorTag.Split(","))
                 {
-                    <a href="@Url.Content("actor/" + actor )" target="_self">@actor</a>
+                    <a href="@Url.Content("/actor/" + actor )" target="_self">@actor</a>
                     if (context.TbMovie.Any(m => m.ActorTag.IndexOf(actor) > -1))
                     {
                         relatedMovies.Add(context.TbMovie.FirstOrDefault(m => m.ActorTag.Contains(actor)));
@@ -141,10 +141,10 @@
             @foreach (var movie in relatedMovies)
         {
             <div class="col-md-3">
-                <a href="@Url.Content("movie/" + @movie.Id)" target="_self">
+                <a href="@Url.Content("/movie/" + @movie.Id)" target="_self">
                     <img id="movie-box" class="movie-img-related img-responsive" src="@movie.ImageUrl" alt="@movie.MovieName">
                 </a>
-                <a href="@Url.Content("movie/" + @movie.Id)" target="_self">
+                <a href="@Url.Content("/movie/" + @movie.Id)" target="_self">
                     <div class="movie-title">
                         <h6 class="text-bold">@movie.MovieName</h6>
                     </div>

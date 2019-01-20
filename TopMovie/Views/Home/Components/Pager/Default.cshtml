@@ -25,10 +25,10 @@
         <div class="col-md-4">
             <div class="info-box">
                 <div class="box-body box-profile">
-                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
+                    <a href="@Url.Content("/movie/" + @mv.Id)" target="_self">
                         <img class="movie-img img-responsive" src="@mv.ImageUrl" alt="@mv.MovieName">
                     </a>
-                    <a href="@Url.Content("movie/" + @mv.Id)" target="_self">
+                    <a href="@Url.Content("/movie/" + @mv.Id)" target="_self">
                         <div class="movie-title">
                             <h6 class="text-bold">@mv.MovieName</h6>
                         </div>
@@ -41,7 +41,7 @@
                     <p class="text-muted" style="font-size: 12px;">
                         @foreach (var tag in mv.ActorTag.Split(","))
                         {
-                            <a href="@Url.Content("actor/" + tag)" target="_self">@tag</a><span>,</span>
+                            <a href="@Url.Content("/actor/" + tag)" target="_self">@tag</a><span>,</span>
                         }
                     </p>
                 </div>

@@ -78,24 +78,24 @@
                         <i class="fa fa-film"></i>&nbsp;Movies
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item menu-item" href="@Url.Action("ensubtitle")">Eng Subtitle</a>
-                        <a class="dropdown-item menu-item" href="@Url.Action("uncensor")">Uncensor</a>
-                        <a class="dropdown-item menu-item" href="@Url.Action("clip")">Video Clip</a>
+                        <a class="dropdown-item menu-item" href="@Url.Content("/ensubtitle")">Eng Subtitle</a>
+                        <a class="dropdown-item menu-item" href="@Url.Content("/uncensor")">Uncensor</a>
+                        <a class="dropdown-item menu-item" href="@Url.Content("/clip")">Video Clip</a>
 
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-item" href="@Url.Action("hentai")"><i class="fa fa-paw"></i>&nbsp;Hentai</a>
+                    <a class="nav-link menu-item" href="@Url.Content("/hentai")"><i class="fa fa-paw"></i>&nbsp;Hentai</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle menu-item" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-tags"></i>&nbsp;Tags
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item menu-item" href="@Url.Action("categories")">Categories</a>
-                        <a class="dropdown-item menu-item" href="@Url.Action("actresses")">Actresses</a>
-                        <a class="dropdown-item menu-item" href="@Url.Action("studio")">Studios</a>
-                        <a class="dropdown-item menu-item" href="@Url.Action("tags")">Tags</a>
+                        <a class="dropdown-item menu-item" href="@Url.Content("/categories")">Categories</a>
+                        <a class="dropdown-item menu-item" href="@Url.Content("/actresses")">Actresses</a>
+                        <a class="dropdown-item menu-item" href="@Url.Content("/studio")">Studios</a>
+                        <a class="dropdown-item menu-item" href="@Url.Content("/tags")">Tags</a>
                     </div>
                 </li>
             </ul>

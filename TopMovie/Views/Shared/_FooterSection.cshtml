@@ -28,7 +28,7 @@
                         var listSeries = string.Join(",", movies.Select(m => m.StudioTag)).Split(",").Distinct().Take(9);
                         foreach (var serie in listSeries)
                         {
-                            <li><a href="@Url.Action(string.Format("studio/{0}/{1}", serie, 1))" target="_self"> <span>@serie</span> <span style="color: #028482;">(@movies.Count(m => m.StudioTag.Contains(serie)))</span> </a></li>
+                            <li><a href="@Url.Content(string.Format("/studio/{0}/{1}", serie, 1))" target="_self"> <span>@serie</span> <span style="color: #028482;">(@movies.Count(m => m.StudioTag.Contains(serie)))</span> </a></li>
                         }
                     }
                 </ul>
@@ -40,7 +40,7 @@
                         var listActress = string.Join(",", movies.Select(m => m.ActorTag)).Split(",").Distinct().Take(9);
                         foreach (var actress in listActress)
                         {
-                            <li><a href="@Url.Action(string.Format("actress/{0}/{1}", actress, 1))" target="_self"> <span>@actress</span> <span style="color: #028482;">(@movies.Count(m => m.ActorTag.Contains(actress)))</span> </a></li>
+                            <li><a href="@Url.Content(string.Format("/actress/{0}/{1}", actress, 1))" target="_self"> <span>@actress</span> <span style="color: #028482;">(@movies.Count(m => m.ActorTag.Contains(actress)))</span> </a></li>
                         }
                     }
                 </ul>
@@ -52,7 +52,7 @@
                         var listCategories = string.Join(",", movies.Select(m => m.CategoryTag)).Split(",").Distinct().Take(9);
                         foreach (var cat in listCategories)
                         {
-                            <li><a href="#@Url.Action(string.Format("category/{0}/{1}", cat, 1))" target="_self"> <span>@cat</span> <span style="color: #028482;">(@movies.Count(m => m.CategoryTag.Contains(cat)))</span> </a></li>
+                            <li><a href="#@Url.Content(string.Format("/category/{0}/{1}", cat, 1))" target="_self"> <span>@cat</span> <span style="color: #028482;">(@movies.Count(m => m.CategoryTag.Contains(cat)))</span> </a></li>
                         }
                     }
                 </ul>
