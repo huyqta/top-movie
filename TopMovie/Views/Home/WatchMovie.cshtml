@@ -15,7 +15,8 @@
 
     <!-- /.box-header -->
     <div class="box-body">
-        @Html.Raw(@Model.GoogleDrive)
+        <iframe src="@Model.GoogleDrive" width="640" height="480"></iframe>
+        @*@Html.Raw(@Model.GoogleDrive)*@
         <div id="player-tool-left">
             <a id="button_thumbs-up" class="watch-movie-icon"><i class="fa fa-thumbs-up"></i><span> Like it </span></a>&nbsp;
             <a id="button_thumbs-down" class="watch-movie-icon"><i class="fa fa-thumbs-down"></i><span> Dislike </span></a>&nbsp;
