@@ -292,6 +292,8 @@ namespace Movie.Services.Models
                     .WithMany(p => p.TbMovie)
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("tb_movie_ibfk_1");
+
+                entity.HasQueryFilter(d => d.GoogleDrive != string.Empty);
             });
 
             modelBuilder.Entity<TbMoviePhimmoi>(entity =>

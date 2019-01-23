@@ -17,8 +17,8 @@ namespace TopMovie
         public IActionResult Index()
         {
             CategoriesMoviesModel cat_mov = new CategoriesMoviesModel();
-            cat_mov.movies = context.TbMovie.ToList();
-            cat_mov.categories = context.TbCategoryMovie.ToList();
+            //cat_mov.movies = context.TbMovie.ToList();
+            //cat_mov.categories = context.TbCategoryMovie.ToList();
             return View(cat_mov);
         }
     }

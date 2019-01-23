@@ -2,9 +2,9 @@
 
 <cache vary-by="@context">
     @{ 
-        var movieDaily = context.TbMovie.Where(m => m.ReleaseDate.Value.AddDays(3) >= DateTime.Now).Take(4).Select(m => new { Id = m.Id, MovieName = m.MovieName, MovieTag = m.MovieTag, ReleaseDate = m.ReleaseDate, ImageUrl = m.ImageUrl });
-        var movieWeekly = context.TbMovie.Where(m => m.ReleaseDate.Value.AddDays(7) >= DateTime.Now).Take(4).Select(m => new { Id = m.Id, MovieName = m.MovieName, MovieTag = m.MovieTag, ReleaseDate = m.ReleaseDate, ImageUrl = m.ImageUrl });
-        var movieMonthly = context.TbMovie.Where(m => m.ReleaseDate.Value.AddDays(30) >= DateTime.Now).Take(4).Select(m => new { Id = m.Id, MovieName = m.MovieName, MovieTag = m.MovieTag, ReleaseDate = m.ReleaseDate, ImageUrl = m.ImageUrl });
+        var movieDaily = context.TbMovie.Where(m => m.GoogleDrive != string.Empty && m.ReleaseDate.Value.AddDays(3) >= DateTime.Now).Take(4).Select(m => new { Id = m.Id, MovieName = m.MovieName, MovieTag = m.MovieTag, ReleaseDate = m.ReleaseDate, ImageUrl = m.ImageUrl });
+        var movieWeekly = context.TbMovie.Where(m => m.GoogleDrive != string.Empty && m.ReleaseDate.Value.AddDays(7) >= DateTime.Now).Take(4).Select(m => new { Id = m.Id, MovieName = m.MovieName, MovieTag = m.MovieTag, ReleaseDate = m.ReleaseDate, ImageUrl = m.ImageUrl });
+        var movieMonthly = context.TbMovie.Where(m => m.GoogleDrive != string.Empty && m.ReleaseDate.Value.AddDays(30) >= DateTime.Now).Take(4).Select(m => new { Id = m.Id, MovieName = m.MovieName, MovieTag = m.MovieTag, ReleaseDate = m.ReleaseDate, ImageUrl = m.ImageUrl });
     }
     @* --- RIGHT SECTION--- *@
     <div class="col-md-3">
