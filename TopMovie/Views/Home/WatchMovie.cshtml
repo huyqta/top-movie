@@ -15,15 +15,15 @@
 
     <!-- /.box-header -->
     <div class="box-body">
-        @*@Html.Raw(Model.GoogleDrive.Split(",")[0])*@
-        <div id="jw-player"></div>
+        @Html.Raw(Model.GoogleDrive.Split(",")[0])
+        @*<div id="jw-player"></div>*@
         @*@Html.Raw(@Model.GoogleDrive)*@
         <div id="player-tool-left">
             <a id="button_thumbs-up" class="watch-movie-icon"><i class="fa fa-thumbs-up"></i><span> Like it </span></a>&nbsp;
             <a id="button_thumbs-down" class="watch-movie-icon"><i class="fa fa-thumbs-down"></i><span> Dislike </span></a>&nbsp;
-            <a id="button_download" class="watch-movie-icon"><i class="fa fa-download"></i><span> Download </span></a>&nbsp;
+            <a href="@Model.GoogleDrive.Split(",")[1]" id="button_download" class="watch-movie-icon"><i class="fa fa-download"></i><span> Download </span></a>&nbsp;
             <a id="button_expand" class="watch-movie-icon"><i class="fa fa-arrows-alt"></i><span> Expand </span></a>&nbsp;
-            <a id="button_thumbs-down" class="watch-movie-icon"><i class="fa fa-toggle-right"></i><span> Next Scene </span></a>
+            <a id="button_next" class="watch-movie-icon"><i class="fa fa-toggle-right"></i><span> Next Scene </span></a>
         </div>
     </div>
 </div>
@@ -158,13 +158,13 @@
     </div>
 </div>
 <script src="~/dist/jquery/dist/jquery.min.js"></script>
-<script src="https://cdn.jwplayer.com/libraries/DEi221lx.js"></script>
+@*<script src="https://cdn.jwplayer.com/libraries/DEi221lx.js"></script>*@
 <script>
     $(document).ready(function () {
-        var playerInstance = jwplayer("jw-player");
+        @*var playerInstance = jwplayer("jw-player");
         playerInstance.setup({
             file: 'https://openload.co/f/5X7gIYDrp6g/JUY-276_My_Wife%27s_Secret_My_Wife_Doesn%27t_Know_What_I_Know..._Mako_Oda.webm.crdownload.mp4',
-        });
+        });*@
 
         $("#submit-comment").click(function () {
              //e.preventDefault();
