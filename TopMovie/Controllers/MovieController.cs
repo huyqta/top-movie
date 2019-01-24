@@ -94,9 +94,9 @@ namespace TopMovie
             foreach (var file in result.result.files)
             {
                 var movie = context.TbMovie.FirstOrDefault(m => file.name.Contains(m.ImdbId));
-                if (movie != null && movie.GoogleDrive == string.Empty)
+                if (movie != null && movie.GoogleDrive != string.Empty)
                 {
-                    movie.GoogleDrive = string.Format(@"<iframe src='{0}' scrolling='no' frameborder='0' width='700' height='430' allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true'></iframe>", file.link.Replace("/f/", "/embed/"));
+                    movie.GoogleDrive = string.Format(@"<iframe src='{0}' scrolling='no' frameborder='0' width='700' height='430' allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true'></iframe>, {1}", file.link.Replace("/f/", "/embed/"), file.link);
                     context.SaveChanges();
                     listMovieUpdated.Add(movie.ImdbId);
                 }
