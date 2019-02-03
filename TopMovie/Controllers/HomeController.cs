@@ -36,7 +36,7 @@ namespace TopMovie.Controllers
             ////ViewBag["URL"] = sourceURL;
 
             //CategoriesMoviesModel model = new CategoriesMoviesModel();
-            var model = context.TbMovie.GetPaged<TbMovie>(page, 21);
+            var model = context.TbMovie.Where(m=>m.GoogleDrive != string.Empty).GetPaged<TbMovie>(page, 21);
             //model.categories = context.TbCategoryMovie.ToList();
             return View(model);
         }

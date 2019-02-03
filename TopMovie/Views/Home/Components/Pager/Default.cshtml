@@ -41,7 +41,7 @@
                     <p class="text-muted" style="font-size: 12px;">
                         @foreach (var tag in mv.ActorTag.Split(","))
                         {
-                            <a href="@Url.Content("/actor/" + tag)" target="_self">@tag</a><span>,</span>
+                            <a href="@Url.Content("/actress/" + tag + "/1")" target="_self">@tag</a><span>,</span>
                         }
                     </p>
                 </div>

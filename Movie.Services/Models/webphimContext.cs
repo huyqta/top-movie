@@ -7,15 +7,23 @@ namespace Movie.Services.Models
     public partial class webphimContext : DbContext
     {
         private string database;
+        private bool isAdmin;
 
         public webphimContext()
         {
             database = "webphim";
+            isAdmin = false;
         }
 
         public webphimContext(string db)
         {
             database = db;
+        }
+
+        public webphimContext(bool admin)
+        {
+            database = "webphim";
+            isAdmin = admin;
         }
 
         public webphimContext(DbContextOptions<webphimContext> options)
@@ -293,7 +301,10 @@ namespace Movie.Services.Models
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("tb_movie_ibfk_1");
 
-                entity.HasQueryFilter(d => d.GoogleDrive != string.Empty);
+                //if (isAdmin == false)
+                //{
+                //    entity.HasQueryFilter(d => d.GoogleDrive != string.Empty);
+                //}
             });
 
             modelBuilder.Entity<TbMoviePhimmoi>(entity =>

@@ -14,7 +14,7 @@ namespace TopMovie
     [AuthorizationAttribute]
     public class MovieController : Controller
     {
-        webphimContext context = new webphimContext();
+        webphimContext context = new webphimContext(true);
 
         public IActionResult Index()
         {
@@ -84,6 +84,7 @@ namespace TopMovie
         {
             List<string> listMovieUpdated = new List<string>();
             List<string> listMovieFailed = new List<string>();
+            List<string> listMovieSkipped = new List<string>();
 
             string apiOpenLoad = "https://api.openload.co/1/file/listfolder?login=549c7e7ad7483265&key=H5AkWvBr";
             var client = new WebClient();
@@ -93,12 +94,20 @@ namespace TopMovie
             
             foreach (var file in result.result.files)
             {
+                if (file.name.Contains("GG-235"))
+                {
+                    string abc = file.name;
+                }
                 var movie = context.TbMovie.FirstOrDefault(m => file.name.Contains(m.ImdbId));
-                if (movie != null && movie.GoogleDrive != string.Empty)
+                if (movie != null && movie.GoogleDrive == string.Empty)
                 {
                     movie.GoogleDrive = string.Format(@"<iframe src='{0}' scrolling='no' frameborder='0' width='700' height='430' allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true'></iframe>, {1}", file.link.Replace("/f/", "/embed/"), file.link);
                     context.SaveChanges();
                     listMovieUpdated.Add(movie.ImdbId);
+                }
+                else if (movie != null && movie.GoogleDrive != string.Empty)
+                {
+                    listMovieSkipped.Add(movie.ImdbId);
                 }
                 else
                 {
