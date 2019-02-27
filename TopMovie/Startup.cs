@@ -77,7 +77,9 @@ namespace TopMovie
                 .AddRewrite(@"tag/(.*)/(\d+)", "Home/Tag?tag=$1&page=$2", skipRemainingRules: false)
                 .AddRewrite(@"category/(.*)/(\d+)", "Home/Category?category=$1&page=$2", skipRemainingRules: false)
                 .AddRewrite(@"studio/(.*)/(\d+)", "Home/Studio?studio=$1&page=$2", skipRemainingRules: false)
-                .AddRewrite(@"actress/(.*)/(\d+)", "Home/Actor?actor=$1&page=$2", skipRemainingRules: false);
+                .AddRewrite(@"actress/(.*)/(\d+)", "Home/Actor?actor=$1&page=$2", skipRemainingRules: false)
+                .AddRewrite(@"what-is-jav-faq", "Home/WhatIsJav", skipRemainingRules: false)
+                .AddRewrite(@"term-glossary", "Home/TermsGlossary", skipRemainingRules: false);
 
                 app.UseRewriter(rewrite);
                 

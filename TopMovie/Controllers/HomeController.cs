@@ -235,5 +235,16 @@ namespace TopMovie.Controllers
             ltm.TagType = TagType;
             return ltm;
         }
+
+        public IActionResult WhatIsJav()
+        {
+            return View();
+        }
+
+        public IActionResult TermsGlossary()
+        {
+            return View();
+        }
+        
     }
 }
