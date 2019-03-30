@@ -1,7 +1,7 @@
 ﻿@inject Movie.Services.Models.webphimContext context;
 @* --- RIGHT SECTION--- *@
 @{
-    var movies = context.TbMovie;
+    var movies = context.TbMovie.Where(d => d.GoogleDrive != string.Empty).ToList();
 }
 <footer class="footer">
     <div class="footer-break-line"></div>
@@ -16,9 +16,9 @@
                     <li><a href="#">Terms</a></li>
                     <li><a href="#">2257 Statement</a></li>
                     <li><a href="#">DMCA</a></li>
-                    <li><a href="#">Facebook</a></li>
+                    @*<li><a href="#">Facebook</a></li>
                     <li><a href="#">Sitemap</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Contact</a></li>*@
                 </ul>
             </div>
             <div class="col-md-3">

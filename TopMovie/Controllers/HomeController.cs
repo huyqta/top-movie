@@ -184,48 +184,50 @@ namespace TopMovie.Controllers
         private ListTagModel GetListTagModel(string TagType)
         {
             ListTagModel ltm = new ListTagModel();
+            var movies = context.TbMovie.Where(d => d.GoogleDrive != string.Empty);
+
             if (ltm.ListTags == null) ltm.ListTags = new List<TagModel>();
             switch (TagType)
             {
                 case "Tag":
-                    var allMovieTags = string.Join(",", context.TbMovie.Select(m => m.MovieTag)).Split(",").Distinct();
+                    var allMovieTags = string.Join(",", movies.Select(m => m.MovieTag.Replace(", ", ","))).Split(",").Distinct();
                     ltm.ListTags = _cache.GetOrCreate<List<TagModel>>(CacheKeys.ListMovieTags,
                         cacheEntry =>
                         {
-                            allMovieTags.Distinct().Select(a => new TagModel() { name = a, quantity = allMovieTags.Count(m => m.Contains(a)) }).ToList();
+                            ltm.ListTags = allMovieTags.Distinct().Select(a => new TagModel() { name = a, quantity = allMovieTags.Count(m => m.Contains(a)) }).ToList();
                             return ltm.ListTags.OrderByDescending(t => t.quantity).ToList();
                         });
                     ltm.Action = "Tag";
                     ltm.PageTitle = "List of Tags";
                     break;
                 case "Category":
-                    var allCategoryTags = string.Join(",", context.TbMovie.Select(m => m.CategoryTag)).Split(",").Distinct();
+                    var allCategoryTags = string.Join(",", movies.Select(m => m.CategoryTag.Replace(", ", ","))).Split(",").Distinct();
                     ltm.ListTags = _cache.GetOrCreate<List<TagModel>>(CacheKeys.ListCategoryTags,
                         cacheEntry =>
                         {
-                            allCategoryTags.Distinct().Select(a => new TagModel() { name = a, quantity = allCategoryTags.Count(m => m.Contains(a)) }).ToList();
+                            ltm.ListTags = allCategoryTags.Distinct().Select(a => new TagModel() { name = a, quantity = allCategoryTags.Count(m => m.Contains(a)) }).ToList();
                             return ltm.ListTags.OrderByDescending(t => t.quantity).ToList();
                         });
                     ltm.Action = "Category";
                     ltm.PageTitle = "List of Categories";
                     break;
                 case "Actress":
-                    var allActorTags = string.Join(",", context.TbMovie.Select(m => m.ActorTag)).Split(",");
+                    var allActorTags = string.Join(",", movies.Select(m => m.ActorTag.Replace(", ", ","))).Split(",");
                     ltm.ListTags = _cache.GetOrCreate<List<TagModel>>(CacheKeys.ListActorTags,
                         cacheEntry =>
                         {
-                            allActorTags.Distinct().Select(a => new TagModel() { name = a, quantity = allActorTags.Count(m => m.Contains(a)) }).ToList();
+                            ltm.ListTags = allActorTags.Distinct().Select(a => new TagModel() { name = a, quantity = allActorTags.Count(m => m.Contains(a)) }).ToList();
                             return ltm.ListTags.OrderByDescending(t=>t.quantity).ToList();
                         });
                     ltm.Action = "Actor";
                     ltm.PageTitle = "List of Actress";
                     break;
                 case "Studio":
-                    var allStudioTags = string.Join(",", context.TbMovie.Select(m => m.StudioTag)).Split(",").Distinct();
+                    var allStudioTags = string.Join(",", movies.Select(m => m.StudioTag.Replace(", ", ","))).Split(",").Distinct();
                     ltm.ListTags = _cache.GetOrCreate<List<TagModel>>(CacheKeys.ListStudioTags,
                         cacheEntry =>
                         {
-                            allStudioTags.Distinct().Select(a => new TagModel() { name = a, quantity = allStudioTags.Count(m => m.Contains(a)) }).ToList();
+                            ltm.ListTags = allStudioTags.Distinct().Select(a => new TagModel() { name = a, quantity = allStudioTags.Count(m => m.Contains(a)) }).ToList();
                             return ltm.ListTags.OrderByDescending(t => t.quantity).ToList();
                         });
                     ltm.Action = "Studio";

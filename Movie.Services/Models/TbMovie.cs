@@ -32,4 +32,9 @@ namespace Movie.Services.Models
 
         public virtual TbCategoryMovie Category { get; set; }
     }
+
+    public class TbMovieOnline : TbMovie
+    {
+
+    }
 }

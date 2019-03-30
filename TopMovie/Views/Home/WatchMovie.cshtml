@@ -2,6 +2,7 @@
 @inject Movie.Services.Models.webphimContext context;
 
 @{
+    var movies = context.TbMovie.Where(d => d.GoogleDrive != string.Empty).ToList();
     List<Movie.Services.Models.TbMovie> relatedMovies = new List<Movie.Services.Models.TbMovie>();
 }
 
