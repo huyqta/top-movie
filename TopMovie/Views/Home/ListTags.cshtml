@@ -1,5 +1,5 @@
 ﻿@model ListTagModel;
-<cache vary-by="@Model">
+<cache vary-by="@Model.TagType">
     <div class="row">
         <div class="col-xs-12">
             <h2>@Model.PageTitle</h2>
@@ -10,7 +10,7 @@
         <ul class="list-tags">
             @foreach (var tag in Model.ListTags)
             {
-                <li><a href="@Url.Content(string.Format("/actress/{0}/{1}", tag.name, 1))" target="_self"> <span>@tag.name</span> <span style="color: #028482;">(@tag.quantity)</span> </a></li>
+                <li><a href="@Url.Content(string.Format("/{2}/{0}/{1}", tag.name, 1, Model.TagType.ToLower()))" target="_self"> <span>@tag.name</span> <span style="color: #028482;">(@tag.quantity)</span> </a></li>
                 @*<li><a href="@Url.Content("actress/" + tag.name)" target="_self">@tag.name</a><span>(@tag.quantity)</span></li>*@
             }
         </ul>

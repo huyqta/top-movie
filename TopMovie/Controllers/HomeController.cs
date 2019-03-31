@@ -52,7 +52,7 @@ namespace TopMovie.Controllers
 
         public IActionResult Actor(string actor, int? page)
         {
-            var result = context.TbMovie.Where(m => m.ActorTag.Contains(actor));
+            var result = context.TbMovie.Where(m => !string.IsNullOrWhiteSpace(m.GoogleDrive) && m.ActorTag.Contains(actor));
             if (page == 0 || page == null) page = 1;
             var model = result.GetPaged<TbMovie>(page.Value, 21);
             return View("Index", model);
@@ -60,7 +60,7 @@ namespace TopMovie.Controllers
 
         public IActionResult Tag(string tag, int? page)
         {
-            var result = context.TbMovie.Where(m => m.MovieTag.Contains(tag));
+            var result = context.TbMovie.Where(m => !string.IsNullOrWhiteSpace(m.GoogleDrive) && m.MovieTag.Contains(tag));
             if (page == 0 || page == null) page = 1;
             var model = result.GetPaged<TbMovie>(page.Value, 21);
             return View("Index", model);
@@ -68,7 +68,7 @@ namespace TopMovie.Controllers
 
         public IActionResult Category(string category, int? page)
         {
-            var result = context.TbMovie.Where(m => m.CategoryTag.Contains(category));
+            var result = context.TbMovie.Where(m => !string.IsNullOrWhiteSpace(m.GoogleDrive) && m.CategoryTag.Contains(category));
             if (page == 0 || page == null) page = 1;
             var model = result.GetPaged<TbMovie>(page.Value, 21);
             return View("Index", model);
@@ -76,7 +76,7 @@ namespace TopMovie.Controllers
 
         public IActionResult Studio(string studio, int? page)
         {
-            var result = context.TbMovie.Where(m => m.StudioTag.Contains(studio));
+            var result = context.TbMovie.Where(m => !string.IsNullOrWhiteSpace(m.GoogleDrive) && m.StudioTag.Contains(studio));
             if (page == 0 || page == null) page = 1;
             var model = result.GetPaged<TbMovie>(page.Value, 21);
             return View("Index", model);
